@@ -39,9 +39,9 @@ public abstract class NbaDAO {
     public abstract void deleteTeams();
 
     @Query("select * from player where id = :idPlayer")
-    public abstract Player getPlayer(String idPlayer);
+    public abstract Player getPlayer(Integer idPlayer);
 
     @Query("select * from team where id = :idTeam")
-    public abstract Team getTeam(String idTeam);
+    public abstract Team getTeam(Integer idTeam);
 
 }
