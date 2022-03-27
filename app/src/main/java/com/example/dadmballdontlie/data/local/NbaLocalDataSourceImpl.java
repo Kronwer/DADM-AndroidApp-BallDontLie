@@ -17,7 +17,7 @@ public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
 
     @Override
     public void addPlayer(Player player) {
-        new Thread(() -> nbaDAO.insertPlayer(player)).
+        new Thread(() -> nbaDAO.insertPlayer(player)).start();
     }
 
     @Override
