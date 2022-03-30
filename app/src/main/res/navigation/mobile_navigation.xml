@@ -22,4 +22,10 @@
         android:name="com.example.dadmballdontlie.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.example.dadmballdontlie.ui.about.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>
