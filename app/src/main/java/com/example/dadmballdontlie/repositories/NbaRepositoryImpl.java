@@ -1,68 +1,70 @@
-package com.example.dadmballdontlie.data.local;
+package com.example.dadmballdontlie.repositories;
 
 import android.content.Context;
 
+import com.example.dadmballdontlie.data.local.NbaLocalDataSource;
+import com.example.dadmballdontlie.data.local.NbaLocalDataSourceImpl;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 
 import java.util.List;
 
-public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
+public class NbaRepositoryImpl implements NbaRepository {
 
-    private NbaDAO nbaDAO;
+    private NbaLocalDataSource dataSource;
 
-    public NbaLocalDataSourceImpl(Context context) {
-        this.nbaDAO = NbaRoomDatabase.getInstance(context).nbaDAO();
+    public NbaRepositoryImpl(Context context) {
+        dataSource = new NbaLocalDataSourceImpl(context);
     }
 
     @Override
     public void addPlayer(Player player) {
-        new Thread(() -> nbaDAO.insertPlayer(player)).start();
+        dataSource.addPlayer(player);
     }
 
     @Override
     public void addTeam(Team team) {
-        new Thread(() -> nbaDAO.insertTeam(team)).start();
+        dataSource.addTeam(team);
     }
 
     @Override
     public void removePlayer(Player player) {
-        new Thread(() -> nbaDAO.deletePlayer(player)).start();
+        dataSource.removePlayer(player);
     }
 
     @Override
     public void removeTeam(Team team) {
-        new Thread(() -> nbaDAO.deleteTeam(team)).start();
+        dataSource.removeTeam(team);
     }
 
     @Override
     public List<Player> getAllPlayers() {
-        return nbaDAO.getPlayers();
+        return dataSource.getAllPlayers();
     }
 
     @Override
     public List<Team> getAllTeams() {
-        return nbaDAO.getTeams();
+        return dataSource.getAllTeams();
     }
 
     @Override
     public void removePlayers() {
-        new Thread(() -> nbaDAO.deletePlayers()).start();
+        dataSource.removePlayers();
     }
 
     @Override
     public void removeTeams() {
-        new Thread(() -> nbaDAO.deleteTeams());
+        dataSource.removeTeams();
     }
 
     @Override
     public Player getPlayerWithId(Integer id) {
-        return nbaDAO.getPlayer(id);
+        return dataSource.getPlayerWithId(id);
     }
 
     @Override
     public Team getTeamWithId(Integer id) {
-        return nbaDAO.getTeam(id);
+        return dataSource.getTeamWithId(id);
     }
 
 }
