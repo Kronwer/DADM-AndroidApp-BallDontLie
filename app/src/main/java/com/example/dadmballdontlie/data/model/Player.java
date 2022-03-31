@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.dadmballdontlie.data.utils.Position;
-
 @Entity(tableName = "player")
 public class Player {
 
@@ -20,7 +18,7 @@ public class Player {
     private String lastName;
 
     @ColumnInfo(name = "position")
-    private Position position;
+    private String position;
 
     @ColumnInfo(name = "height_feet")
     private int heightFeet;
@@ -46,7 +44,7 @@ public class Player {
         return lastName;
     }
 
-    public Position getPosition() {
+    public String getPosition() {
         return position;
     }
 

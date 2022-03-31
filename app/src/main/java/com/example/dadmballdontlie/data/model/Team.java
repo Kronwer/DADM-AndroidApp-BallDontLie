@@ -4,9 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.dadmballdontlie.data.utils.Conference;
-import com.example.dadmballdontlie.data.utils.Division;
-
 @Entity(tableName = "team")
 public class Team {
 
@@ -21,10 +18,10 @@ public class Team {
     private String city;
 
     @ColumnInfo(name = "conference")
-    private Conference conference;
+    private String conference;
 
     @ColumnInfo(name = "division")
-    private Division division;
+    private String division;
 
     @ColumnInfo(name = "full_name")
     private String fullName;
@@ -44,11 +41,11 @@ public class Team {
         return city;
     }
 
-    public Conference getConference() {
+    public String getConference() {
         return conference;
     }
 
-    public Division getDivision() {
+    public String getDivision() {
         return division;
     }
 
