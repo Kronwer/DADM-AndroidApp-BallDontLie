@@ -17,9 +17,11 @@ public class Team {
     @ColumnInfo(name = "city")
     private String city;
 
+    //{"West","East"}
     @ColumnInfo(name = "conference")
     private String conference;
 
+    //{"Northwest", "Southwest", "Southeast", "Atlantic", "Pacific", "Central"}
     @ColumnInfo(name = "division")
     private String division;
 

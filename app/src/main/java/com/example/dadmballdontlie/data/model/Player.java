@@ -17,6 +17,7 @@ public class Player {
     @ColumnInfo(name = "last_name")
     private String lastName;
 
+    // {"C", "F", "G"}
     @ColumnInfo(name = "position")
     private String position;
 
