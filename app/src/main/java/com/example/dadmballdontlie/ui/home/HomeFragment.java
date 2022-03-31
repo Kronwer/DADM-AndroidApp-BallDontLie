@@ -10,11 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.dadmballdontlie.SharedViewModel;
+import com.example.dadmballdontlie.SharedViewModelFactory;
 import com.example.dadmballdontlie.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private SharedViewModel sharedViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,8 +27,11 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        sharedViewModel = new ViewModelProvider(requireActivity(),
+                new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
+
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        sharedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
