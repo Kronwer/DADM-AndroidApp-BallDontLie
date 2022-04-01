@@ -4,19 +4,33 @@ import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "player")
 public class Player {
     @PrimaryKey
     private int id;
+
+    @ColumnInfo(name = "first_name")
     private String first_name;
+
+    @ColumnInfo(name = "last_name")
     private String last_name;
+
+    @ColumnInfo(name = "position")
     private String position;
+
+    @ColumnInfo(name = "height_feet")
     private int height_feet;
+
+    @ColumnInfo(name = "height_inches")
     private int height_inches;
+
+    @ColumnInfo(name = "weight_pounds")
     private int weight_pounds;
 
+    @ColumnInfo(name = "team")
     private Team team;
 
     public Player(int id, String first_name, String last_name, String position, int height_feet,

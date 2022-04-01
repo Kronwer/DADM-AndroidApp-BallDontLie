@@ -9,4 +9,15 @@
     <string name="title_search">Buscar</string>
     <string name="title_favs">Favoritos</string>
     <string name="title_profile">Perfil</string>
+    <string name="position_C">Center</string>
+    <string name="position_F">Forward</string>
+    <string name="position_G">Guard</string>
+    <string name="conference_East">East</string>
+    <string name="conference_West">West</string>
+    <string name="division_NW">Northwest</string>
+    <string name="division_SW">Southwest</string>
+    <string name="division_SE">Southeast</string>
+    <string name="division_AT">Atlantic</string>
+    <string name="division_PA">Pacific</string>
+    <string name="division_CE" translatable="false">Central</string>
 </resources>

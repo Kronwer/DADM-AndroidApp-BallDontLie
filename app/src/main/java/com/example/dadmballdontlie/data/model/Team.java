@@ -7,12 +7,26 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "team")
 public class Team {
     @PrimaryKey
+    @ColumnInfo(name = "id")
     private int id;
+
+    @ColumnInfo(name = "abbreviation")
     private String abbreviation;
+
+    @ColumnInfo(name = "city")
     private String city;
+
+    @ColumnInfo(name = "conference")
     private String conference;
+
+    //{"Northwest", "Southwest", "Southeast", "Atlantic", "Pacific", "Central"}
+    @ColumnInfo(name = "division")
     private String division;
+
+    @ColumnInfo(name = "full_name")
     private String full_name;
+
+    @ColumnInfo(name = "name")
     private String name;
 
     public Team(int id, String abbreviation, String city,String conference,

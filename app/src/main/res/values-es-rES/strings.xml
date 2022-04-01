@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DADM BallDontLie</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Tablero</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="position_C">Pívot</string>
+    <string name="position_F">Alero</string>
+    <string name="position_G">Base</string>
+    <string name="conference_East">Este</string>
+    <string name="conference_West">Oeste</string>
+    <string name="division_NW">Noroeste</string>
+    <string name="division_SW">Sudoeste</string>
+    <string name="division_SE">Sudeste</string>
+    <string name="division_AT">Atlántico</string>
+    <string name="division_PA">Pacífico</string>
+</resources>
