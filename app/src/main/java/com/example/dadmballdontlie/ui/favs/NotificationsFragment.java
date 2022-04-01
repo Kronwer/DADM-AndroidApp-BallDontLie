@@ -1,7 +1,6 @@
-package com.example.dadmballdontlie.ui.dashboard;
+package com.example.dadmballdontlie.ui.favs;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +12,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dadmballdontlie.SharedViewModel;
 import com.example.dadmballdontlie.SharedViewModelFactory;
-import com.example.dadmballdontlie.databinding.FragmentDashboardBinding;
+import com.example.dadmballdontlie.databinding.FragmentNotificationsBinding;
 
-public class DashboardFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentNotificationsBinding binding;
     private SharedViewModel sharedViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        NotificationsViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        final TextView textView = binding.textDashboard;
+        final TextView textView = binding.textNotifications;
         sharedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }

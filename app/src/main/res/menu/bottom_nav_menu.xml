@@ -17,11 +17,6 @@
         android:title="@string/title_favs" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_user"
-        android:title="@string/title_profile" />
-
-    <item
         android:id="@+id/navigation_about"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/title_about" />

@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_about"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/icon"
+        app:srcCompat="@drawable/ic_icon"
         tools:layout_editor_absoluteX="34dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

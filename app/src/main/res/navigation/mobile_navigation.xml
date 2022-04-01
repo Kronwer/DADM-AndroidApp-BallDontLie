@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.dadmballdontlie.ui.dashboard.DashboardFragment"
+        android:name="com.example.dadmballdontlie.ui.search.DashboardFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_favs"
-        android:name="com.example.dadmballdontlie.ui.dashboard.DashboardFragment"
+        android:name="com.example.dadmballdontlie.ui.search.DashboardFragment"
         android:label="@string/title_favs"
         tools:layout="@layout/fragment_dashboard" />
 
