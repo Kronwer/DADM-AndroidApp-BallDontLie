@@ -1,4 +1,4 @@
-package com.example.dadmballdontlie.ui.favs;
+package com.example.dadmballdontlie.ui.search;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,26 +12,22 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dadmballdontlie.SharedViewModel;
 import com.example.dadmballdontlie.SharedViewModelFactory;
-import com.example.dadmballdontlie.databinding.FragmentNotificationsBinding;
+import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
 
-public class NotificationsFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentSearchBinding binding;
     private SharedViewModel sharedViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        final TextView textView = binding.textNotifications;
-        sharedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
