@@ -1,8 +1,11 @@
 package com.example.dadmballdontlie.repositories;
 
+import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.PlayersResponse;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
+
+import java.util.Properties;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,5 +19,8 @@ public interface NbaRetrofitInterface {
 
     @GET("players/{ID}")
     Call<Player> getPlayerById(@Path("ID") int id);
+
+    @GET("season_averages")
+    Call<Data> getPlayerStatFromCurrentSeason(@Query("player_ids[]") int id);
 
 }

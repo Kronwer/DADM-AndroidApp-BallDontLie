@@ -10,11 +10,16 @@ import androidx.lifecycle.ViewModel;
 import androidx.room.Room;
 
 import com.example.dadmballdontlie.data.local.NbaRoomDatabase;
+import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.repositories.NbaRetrofitInterface;
+
+import java.util.ArrayList;
+import java.util.Properties;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +50,7 @@ public class SharedViewModel extends AndroidViewModel {
         retrofitInterface = retrofit.create(NbaRetrofitInterface.class);
 
         repository = new NbaRepositoryImpl(application);
+        getPlayerStatFromCurrentSeason();
 
     }
 
@@ -84,6 +90,25 @@ public class SharedViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Player> call, Throwable t) {
+                mText.setValue("Error while retrieving player");
+            }
+        });
+
+    }
+
+    // EXAMPLE CODE
+    public void getPlayerStatFromCurrentSeason() {
+
+        Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(237);
+
+        call.enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(Call<Data> call, Response<Data> response) {
+                mText.setValue(response.body().getFirstStat().getFreeThrowsPercentage() + "");
+            }
+
+            @Override
+            public void onFailure(Call<Data> call, Throwable t) {
                 mText.setValue("Error while retrieving player");
             }
         });
