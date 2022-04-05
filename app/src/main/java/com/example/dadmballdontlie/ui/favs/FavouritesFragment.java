@@ -1,4 +1,4 @@
-package com.example.dadmballdontlie.ui.search;
+package com.example.dadmballdontlie.ui.favs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dadmballdontlie.SharedViewModel;
 import com.example.dadmballdontlie.SharedViewModelFactory;
-import com.example.dadmballdontlie.databinding.FragmentDashboardBinding;
+import com.example.dadmballdontlie.databinding.FragmentFavouritesBinding;
+import com.example.dadmballdontlie.ui.home.HomeViewModel;
 
-public class DashboardFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentFavouritesBinding binding;
     private SharedViewModel sharedViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        HomeViewModel homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentFavouritesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        final TextView textView = binding.textDashboard;
-        sharedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

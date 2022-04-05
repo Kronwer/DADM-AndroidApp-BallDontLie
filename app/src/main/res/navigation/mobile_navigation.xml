@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.dadmballdontlie.ui.search.DashboardFragment"
+        android:name="com.example.dadmballdontlie.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_favs"
-        android:name="com.example.dadmballdontlie.ui.search.DashboardFragment"
+        android:name="com.example.dadmballdontlie.ui.favs.FavouritesFragment"
         android:label="@string/title_favs"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_about"

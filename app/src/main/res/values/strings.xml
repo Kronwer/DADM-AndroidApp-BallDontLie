@@ -20,4 +20,6 @@
     <string name="division_AT">Atlantic</string>
     <string name="division_PA">Pacific</string>
     <string name="division_CE" translatable="false">Central</string>
+    <string name="tab_teams">Teams</string>
+    <string name="tab_players">Players</string>
 </resources>
