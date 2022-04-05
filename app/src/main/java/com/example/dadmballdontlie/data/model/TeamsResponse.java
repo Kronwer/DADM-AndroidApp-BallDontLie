@@ -1,23 +1,23 @@
 package com.example.dadmballdontlie.data.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PlayersResponse {
-    private List<Player> data;
+public class TeamsResponse {
+
+    private List<Team> data;
     private Meta meta;
 
-    public PlayersResponse(List<Player> data, Meta meta) {
+    public TeamsResponse(List<Team> data, Meta meta) {
         this.data = data;
         this.meta = meta;
     }
 
-    public List<Player> getData() {
+    public List<Team> getData() {
         return data;
     }
 
-    public void setData(List<Player> players) {
-        this.data = players;
+    public void setData(List<Team> data) {
+        this.data = data;
     }
 
     public Meta getMeta() {
@@ -27,4 +27,5 @@ public class PlayersResponse {
     public void setMeta(Meta meta) {
         this.meta = meta;
     }
+
 }
