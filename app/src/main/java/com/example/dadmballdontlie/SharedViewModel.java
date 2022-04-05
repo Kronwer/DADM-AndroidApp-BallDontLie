@@ -2,6 +2,7 @@ package com.example.dadmballdontlie;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -109,7 +110,8 @@ public class SharedViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Data> call, Throwable t) {
-                mText.setValue("Error while retrieving player");
+                mText.setValue("Error while retrieving stats from a player");
+                Toast.makeText(getApplication().getApplicationContext(), "Error while retrieving stats from a player", Toast.LENGTH_SHORT);
             }
         });
 
