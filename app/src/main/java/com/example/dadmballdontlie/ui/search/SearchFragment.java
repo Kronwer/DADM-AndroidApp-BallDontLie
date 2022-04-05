@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.SharedViewModel;
 import com.example.dadmballdontlie.SharedViewModelFactory;
-import com.example.dadmballdontlie.adapter.teamList;
 import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,9 +23,6 @@ public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private teamList adapter;
-    private TabLayout tabLayoutTeam;
-    private RecyclerView recyclerViewTeam;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,10 +33,6 @@ public class SearchFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        initViews();
-        initTabLayout();
-        initRecycler();
-
         return root;
     }
 
@@ -51,28 +42,4 @@ public class SearchFragment extends Fragment {
         binding = null;
     }
 
-    private void initViews(){
-        tabLayoutTeam = binding.tabLayoutSearch;
-        recyclerViewTeam = binding.recyclerViewSearch;
-    }
-
-    private void initTabLayout(){
-        tabLayoutTeam.addTab(tabLayoutTeam.newTab().setText(R.string.tab_teams));
-        tabLayoutTeam.addTab(tabLayoutTeam.newTab().setText(R.string.tab_players));
-    }
-
-    private void initRecycler(){
-        adapter = new teamList(fakeTeamList());
-        recyclerViewTeam.setAdapter(adapter);
-    }
-
-    private List<String> fakeTeamList(){
-        List<String> fakeList = new ArrayList<>();
-
-        for(int i = 0; i < 10; i++){
-            fakeList.add("Los Angeles Lakers");
-        }
-
-        return fakeList;
-    }
 }
