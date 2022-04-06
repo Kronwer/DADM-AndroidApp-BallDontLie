@@ -1,47 +1,42 @@
-package com.example.dadmballdontlie.ui.search;
+package com.example.dadmballdontlie;
 
-import android.content.res.Resources;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import com.example.dadmballdontlie.PlayerSearchFragment;
-import com.example.dadmballdontlie.R;
-import com.example.dadmballdontlie.SharedViewModel;
-import com.example.dadmballdontlie.TeamSearchFragment;
 import com.example.dadmballdontlie.adapter.TeamList;
-import com.example.dadmballdontlie.adapter.ViewPagerAdapter;
 import com.example.dadmballdontlie.data.model.Team;
+import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
 import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchFragment extends Fragment {
+public class PlayerSearchFragment extends Fragment {
 
-    private FragmentSearchBinding binding;
+    private FragmentPlayerSearchBinding binding;
     private SharedViewModel sharedViewModel;
     private TeamList adapter;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        binding = FragmentPlayerSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        /*
+
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        RecyclerView recyclerView = binding.recyclerView;
+        RecyclerView recyclerView = binding.recyclerViewPlayerSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
@@ -51,16 +46,6 @@ public class SearchFragment extends Fragment {
         List<Team> list = fakeLists();
         adapter = new TeamList(list);
         recyclerView.setAdapter(adapter);
-        */
-        tabLayout = root.findViewById(R.id.tabLayout);
-        viewPager = root.findViewById(R.id.page);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getParentFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerAdapter.addFragment(new PlayerSearchFragment(),"Player Search");
-        viewPagerAdapter.addFragment(new TeamSearchFragment(),"Team Search");
-        viewPager.setAdapter(viewPagerAdapter);
 
         return root;
     }
