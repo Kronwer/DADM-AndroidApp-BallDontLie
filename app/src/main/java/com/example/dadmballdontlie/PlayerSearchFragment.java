@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dadmballdontlie.adapter.PlayerList;
 import com.example.dadmballdontlie.adapter.TeamList;
+import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
 import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
@@ -25,8 +27,9 @@ public class PlayerSearchFragment extends Fragment {
 
     private FragmentPlayerSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private TeamList adapter;
+    private PlayerList adapter;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -43,9 +46,10 @@ public class PlayerSearchFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.addItemDecoration(itemDecoration);
 
-        List<Team> list = fakeLists();
-        adapter = new TeamList(list);
+        List<Player> list = fakeLists();
+        adapter = new PlayerList(list);
         recyclerView.setAdapter(adapter);
+        
 
         return root;
     }
@@ -56,13 +60,14 @@ public class PlayerSearchFragment extends Fragment {
         binding = null;
     }
 
-    private List<Team> fakeLists(){
-        Team team;
-        List<Team> list = new ArrayList<Team>();
+    private List<Player> fakeLists(){
+        Player player;
+        List<Player> list = new ArrayList<>();
+        Team team = new Team(1,"mh","Miami","Northwest","Northwest", "Miami Heats", "Miami Heats");
 
         for(int i = 0; i < 15; i++){
-            team = new Team(i,"mh","Miami","Northwest","Northwest", "Miami Heats", "Miami Heats");
-            list.add(team);
+            player = new Player(i,"Nombre", "Apellido", "Posicion", 12, 12, 12, team);
+            list.add(player);
         }
 
         return list;
