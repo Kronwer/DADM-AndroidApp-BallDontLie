@@ -9,35 +9,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dadmballdontlie.R;
-import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerList extends RecyclerView.Adapter<PlayerList.ViewHolder>{
+public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
 
-    private List<Player> listPlayers;
+    private List<Team> listTeam;
 
-    public PlayerList(List<Player> lista){
-        listPlayers = lista;
+    public TeamAdapter(){
+        listTeam = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public PlayerList.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_item,parent,false);
-        PlayerList.ViewHolder holder = new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_item,parent,false);
+        TeamAdapter.ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(listPlayers.get(position).getFirst_name());
+        holder.name.setText(listTeam.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return listPlayers.size();
+        return listTeam.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +46,13 @@ public class PlayerList extends RecyclerView.Adapter<PlayerList.ViewHolder>{
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
-            name = itemView.findViewById(R.id.textViewPlayer);
+            name = itemView.findViewById(R.id.textViewTeam);
         }
 
+    }
+
+    public void updateList(List<Team> teams) {
+        listTeam = teams;
+        notifyDataSetChanged();
     }
 }

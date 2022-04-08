@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dadmballdontlie.repositories.NbaRepository;
+import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
-import com.example.dadmballdontlie.adapter.PlayerList;
+import com.example.dadmballdontlie.adapter.PlayerAdapter;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
@@ -27,7 +29,8 @@ public class PlayerSearchFragment extends Fragment {
 
     private FragmentPlayerSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private PlayerList adapter;
+    private PlayerAdapter adapter;
+    private NbaRepository nbaRepository;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,6 +42,8 @@ public class PlayerSearchFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
+        nbaRepository = new NbaRepositoryImpl(getContext());
+
         RecyclerView recyclerView = binding.recyclerViewPlayerSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
@@ -46,9 +51,24 @@ public class PlayerSearchFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.addItemDecoration(itemDecoration);
 
-        List<Player> list = fakeLists();
-        adapter = new PlayerList(list);
+        adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Player> list = nbaRepository.getAllPlayers();
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.updateList(list);
+                    }
+                });
+            }
+        }).start();
+
+
 
         return root;
     }

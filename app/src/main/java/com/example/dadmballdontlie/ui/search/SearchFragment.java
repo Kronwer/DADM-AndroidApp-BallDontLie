@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
-import com.example.dadmballdontlie.adapter.TeamList;
+import com.example.dadmballdontlie.adapter.TeamAdapter;
 import com.example.dadmballdontlie.adapter.ViewPagerAdapter;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
@@ -25,7 +25,7 @@ public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private TeamList adapter;
+    private TeamAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -46,7 +46,7 @@ public class SearchFragment extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
 
         List<Team> list = fakeLists();
-        adapter = new TeamList(list);
+        adapter = new TeamAdapter(list);
         recyclerView.setAdapter(adapter);
         */
         tabLayout = root.findViewById(R.id.tabLayout);

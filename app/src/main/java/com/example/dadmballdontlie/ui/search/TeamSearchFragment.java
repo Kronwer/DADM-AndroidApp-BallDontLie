@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dadmballdontlie.adapter.TeamAdapter;
+import com.example.dadmballdontlie.repositories.NbaRepository;
+import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
-import com.example.dadmballdontlie.adapter.TeamList;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentTeamSearchBinding;
 
@@ -25,7 +27,8 @@ public class TeamSearchFragment extends Fragment {
 
     private FragmentTeamSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private TeamList adapter;
+    private TeamAdapter adapter;
+    private NbaRepository nbaRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +39,8 @@ public class TeamSearchFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
+        nbaRepository = new NbaRepositoryImpl(getContext());
+
         RecyclerView recyclerView = binding.recyclerViewTeamSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
@@ -43,9 +48,22 @@ public class TeamSearchFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.addItemDecoration(itemDecoration);
 
-        List<Team> list = fakeLists();
-        adapter = new TeamList(list);
+        adapter = new TeamAdapter();
         recyclerView.setAdapter(adapter);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Team> list = nbaRepository.getAllTeams();
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.updateList(list);
+                    }
+                });
+            }
+        }).start();
 
         return root;
     }
