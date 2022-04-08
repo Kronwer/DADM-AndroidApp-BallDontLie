@@ -3,17 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.20520833333333333" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_favs.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_notifications.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_player_favs.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_player_search.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_search.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_team.xml" value="0.18802083333333333" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_team_search.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/drawable/ic_ball.xml" value="0.144" />
+        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.2015625" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.2015625" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_dashboard.xml" value="0.41440217391304346" />
+        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_player_search.xml" value="0.33" />
+        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_team_search.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.175" />

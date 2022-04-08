@@ -1,8 +1,7 @@
-package com.example.dadmballdontlie;
+package com.example.dadmballdontlie.ui.search;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -13,43 +12,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dadmballdontlie.R;
+import com.example.dadmballdontlie.SharedViewModel;
+import com.example.dadmballdontlie.SharedViewModelFactory;
 import com.example.dadmballdontlie.adapter.PlayerList;
 import com.example.dadmballdontlie.adapter.TeamList;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
-import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
+import com.example.dadmballdontlie.databinding.FragmentTeamSearchBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerSearchFragment extends Fragment {
+public class TeamSearchFragment extends Fragment {
 
-    private FragmentPlayerSearchBinding binding;
+    private FragmentTeamSearchBinding binding;
     private SharedViewModel sharedViewModel;
-    private PlayerList adapter;
+    private TeamList adapter;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-        binding = FragmentPlayerSearchBinding.inflate(inflater, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentTeamSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        RecyclerView recyclerView = binding.recyclerViewPlayerSearch;
+        RecyclerView recyclerView = binding.recyclerViewTeamSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
         recyclerView.setLayoutManager(manager);
         recyclerView.addItemDecoration(itemDecoration);
 
-        List<Player> list = fakeLists();
-        adapter = new PlayerList(list);
+        List<Team> list = fakeLists();
+        adapter = new TeamList(list);
         recyclerView.setAdapter(adapter);
-        
 
         return root;
     }
@@ -60,14 +60,13 @@ public class PlayerSearchFragment extends Fragment {
         binding = null;
     }
 
-    private List<Player> fakeLists(){
-        Player player;
-        List<Player> list = new ArrayList<>();
-        Team team = new Team(1,"mh","Miami","Northwest","Northwest", "Miami Heats", "Miami Heats");
+    private List<Team> fakeLists(){
+        Team team;
+        List<Team> list = new ArrayList<>();
 
         for(int i = 0; i < 15; i++){
-            player = new Player(i,"Nombre", "Apellido", "Posicion", 12, 12, 12, team);
-            list.add(player);
+            team = new Team(i,"mh","Miami" + i,"Northwest","Northwest", "Miami Heats", "Miami Heats" + i);
+            list.add(team);
         }
 
         return list;

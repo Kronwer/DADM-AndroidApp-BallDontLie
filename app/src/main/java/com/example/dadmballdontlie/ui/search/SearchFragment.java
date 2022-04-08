@@ -1,6 +1,5 @@
 package com.example.dadmballdontlie.ui.search;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.dadmballdontlie.PlayerSearchFragment;
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.SharedViewModel;
-import com.example.dadmballdontlie.TeamSearchFragment;
 import com.example.dadmballdontlie.adapter.TeamList;
 import com.example.dadmballdontlie.adapter.ViewPagerAdapter;
 import com.example.dadmballdontlie.data.model.Team;
