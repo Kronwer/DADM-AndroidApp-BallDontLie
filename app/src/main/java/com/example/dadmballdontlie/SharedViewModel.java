@@ -13,8 +13,8 @@ import androidx.room.Room;
 import com.example.dadmballdontlie.data.local.NbaRoomDatabase;
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.PlayersResponse;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.data.model.TeamsResponse;
 import com.example.dadmballdontlie.repositories.NbaRepository;
@@ -114,6 +114,7 @@ public class SharedViewModel extends AndroidViewModel {
                 Toast.makeText(getApplication().getApplicationContext(), "Error while retrieving stats from a player", Toast.LENGTH_SHORT);
             }
         });
+    }
 
     public void getAllPlayers() {
         Call<PlayersResponse> call = retrofitInterface.getAllPlayers("0", "100");
