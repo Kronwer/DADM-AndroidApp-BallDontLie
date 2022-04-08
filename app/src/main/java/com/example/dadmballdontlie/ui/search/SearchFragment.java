@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dadmballdontlie.R;
-import com.example.dadmballdontlie.SharedViewModel;
+import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.adapter.TeamList;
 import com.example.dadmballdontlie.adapter.ViewPagerAdapter;
 import com.example.dadmballdontlie.data.model.Team;

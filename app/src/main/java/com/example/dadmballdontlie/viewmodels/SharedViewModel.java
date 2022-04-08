@@ -1,4 +1,4 @@
-package com.example.dadmballdontlie;
+package com.example.dadmballdontlie.viewmodels;
 
 import android.app.Application;
 import android.util.Log;

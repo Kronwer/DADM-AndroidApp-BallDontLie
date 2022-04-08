@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dadmballdontlie.SharedViewModel;
-import com.example.dadmballdontlie.SharedViewModelFactory;
+import com.example.dadmballdontlie.viewmodels.SharedViewModel;
+import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {

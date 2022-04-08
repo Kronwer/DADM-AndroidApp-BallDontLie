@@ -13,14 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dadmballdontlie.SharedViewModel;
-import com.example.dadmballdontlie.SharedViewModelFactory;
+import com.example.dadmballdontlie.viewmodels.SharedViewModel;
+import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.adapter.PlayerList;
-import com.example.dadmballdontlie.adapter.TeamList;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
-import com.example.dadmballdontlie.databinding.FragmentSearchBinding;
 
 import java.util.ArrayList;
 import java.util.List;
