@@ -26,12 +26,13 @@ public class FavsFragment extends Fragment {
 
         binding = FragmentFavsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        /*
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
         final TextView textView = binding.textNotifications;
         sharedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        */
         return root;
     }
 
