@@ -4,6 +4,7 @@ import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
+import com.example.dadmballdontlie.data.model.TeamsResponse;
 
 import java.util.Properties;
 
@@ -22,5 +23,11 @@ public interface NbaRetrofitInterface {
 
     @GET("season_averages")
     Call<Data> getPlayerStatFromCurrentSeason(@Query("player_ids[]") int id);
+    
+    @GET("players")
+    Call<PlayersResponse> getAllPlayers(@Query("page") String page, @Query("per_page") String per_page);
+
+    @GET("teams")
+    Call<TeamsResponse> getAllTeams();
 
 }

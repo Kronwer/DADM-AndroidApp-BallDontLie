@@ -14,13 +14,16 @@ import com.example.dadmballdontlie.data.local.NbaRoomDatabase;
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Stat;
+import com.example.dadmballdontlie.data.model.PlayersResponse;
 import com.example.dadmballdontlie.data.model.Team;
+import com.example.dadmballdontlie.data.model.TeamsResponse;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.repositories.NbaRetrofitInterface;
 
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +37,6 @@ public class SharedViewModel extends AndroidViewModel {
     private Retrofit retrofit;
     private NbaRetrofitInterface retrofitInterface;
     private NbaRepository repository;
-
 
     public SharedViewModel(Application application) {
 
@@ -51,8 +53,6 @@ public class SharedViewModel extends AndroidViewModel {
         retrofitInterface = retrofit.create(NbaRetrofitInterface.class);
 
         repository = new NbaRepositoryImpl(application);
-        getPlayerStatFromCurrentSeason();
-
     }
 
     public LiveData<String> getText() {
@@ -115,6 +115,68 @@ public class SharedViewModel extends AndroidViewModel {
             }
         });
 
+    public void getAllPlayers() {
+        Call<PlayersResponse> call = retrofitInterface.getAllPlayers("0", "100");
+
+        call.enqueue(new Callback<PlayersResponse>() {
+            @Override
+            public void onResponse(Call<PlayersResponse> call, Response<PlayersResponse> response) {
+                loadRemainingPlayers(response.body().getMeta().getTotal_pages());
+                savePlayersDB(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<PlayersResponse> call, Throwable t) {
+                Toast.makeText(getApplication().getApplicationContext(), "Error retrieving players", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void getAllTeams() {
+        Call<TeamsResponse> call = retrofitInterface.getAllTeams();
+
+        call.enqueue(new Callback<TeamsResponse>() {
+            @Override
+            public void onResponse(Call<TeamsResponse> call, Response<TeamsResponse> response) {
+                saveTeamsDB(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<TeamsResponse> call, Throwable t) {
+                Toast.makeText(getApplication().getApplicationContext(), "Error retrieving teams", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadRemainingPlayers(int total_pages) {
+        for (int i = 2; i <= total_pages; i++) {
+            Call<PlayersResponse> call = retrofitInterface.getAllPlayers(i + "", "100");
+
+            call.enqueue(new Callback<PlayersResponse>() {
+                @Override
+                public void onResponse(Call<PlayersResponse> call, Response<PlayersResponse> response) {
+                    savePlayersDB(response.body().getData());
+                }
+
+                @Override
+                public void onFailure(Call<PlayersResponse> call, Throwable t) {
+                    mText.setValue("Error while retrieving player");
+                }
+            });
+        }
+    }
+
+    private void savePlayersDB(List<Player> players) {
+        for (Player player: players) {
+            repository.addPlayer(player);
+        }
+    }
+
+    private void saveTeamsDB(List<Team> teams) {
+        for (Team team: teams) {
+            repository.addTeam(team);
+        }
     }
 
 }
