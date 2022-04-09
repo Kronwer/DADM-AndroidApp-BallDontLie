@@ -30,7 +30,6 @@ public class TeamSearchFragment extends Fragment {
     private FragmentTeamSearchBinding binding;
     private SharedViewModel sharedViewModel;
     private TeamAdapter adapter;
-    private NbaRepository nbaRepository;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,8 +39,6 @@ public class TeamSearchFragment extends Fragment {
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
-
-        nbaRepository = new NbaRepositoryImpl(getContext());
 
         RecyclerView recyclerView = binding.recyclerViewTeamSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
@@ -53,14 +50,12 @@ public class TeamSearchFragment extends Fragment {
         adapter = new TeamAdapter();
         recyclerView.setAdapter(adapter);
 
-        LiveData<List<Team>> list = nbaRepository.getAllTeams();
-        list.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
+        sharedViewModel.listTeam.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
             @Override
             public void onChanged(List<Team> teams) {
                 adapter.updateList(teams);
             }
         });
-
 
         return root;
     }
@@ -71,15 +66,4 @@ public class TeamSearchFragment extends Fragment {
         binding = null;
     }
 
-    private List<Team> fakeLists(){
-        Team team;
-        List<Team> list = new ArrayList<>();
-
-        for(int i = 0; i < 15; i++){
-            team = new Team(i,"mh","Miami" + i,"Northwest","Northwest", "Miami Heats", "Miami Heats" + i);
-            list.add(team);
-        }
-
-        return list;
-    }
 }

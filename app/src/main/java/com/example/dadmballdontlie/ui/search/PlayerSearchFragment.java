@@ -32,7 +32,6 @@ public class PlayerSearchFragment extends Fragment {
     private FragmentPlayerSearchBinding binding;
     private SharedViewModel sharedViewModel;
     private PlayerAdapter adapter;
-    private NbaRepository nbaRepository;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,8 +42,6 @@ public class PlayerSearchFragment extends Fragment {
 
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
-
-        nbaRepository = new NbaRepositoryImpl(getContext());
 
         RecyclerView recyclerView = binding.recyclerViewPlayerSearch;
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
@@ -57,13 +54,14 @@ public class PlayerSearchFragment extends Fragment {
         adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
 
-        LiveData<List<Player>> list = nbaRepository.getAllPlayers();
-        list.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
+        sharedViewModel.listPlayer.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
             @Override
             public void onChanged(List<Player> players) {
                 adapter.updateList(players);
             }
         });
+
+        //sharedViewModel.listPlayerApi.ob
 
         return root;
     }
@@ -74,16 +72,4 @@ public class PlayerSearchFragment extends Fragment {
         binding = null;
     }
 
-    private List<Player> fakeLists(){
-        Player player;
-        List<Player> list = new ArrayList<>();
-        Team team = new Team(1,"mh","Miami","Northwest","Northwest", "Miami Heats", "Miami Heats");
-
-        for(int i = 0; i < 15; i++){
-            player = new Player(i,"Nombre" + i, "Apellido", "Posicion", 12, 12, 12, team);
-            list.add(player);
-        }
-
-        return list;
-    }
 }

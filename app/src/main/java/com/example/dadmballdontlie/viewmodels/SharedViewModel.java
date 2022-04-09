@@ -1,28 +1,25 @@
 package com.example.dadmballdontlie.viewmodels;
 
 import android.app.Application;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.room.Room;
+import androidx.lifecycle.Transformations;
 
-import com.example.dadmballdontlie.data.local.NbaRoomDatabase;
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.PlayersResponse;
-import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.data.model.TeamsResponse;
+import com.example.dadmballdontlie.repositories.ApiRepository;
+import com.example.dadmballdontlie.repositories.ApiRepositoryCallBack;
+import com.example.dadmballdontlie.repositories.ApiRepositoryImpl;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
-import com.example.dadmballdontlie.repositories.NbaRetrofitInterface;
+import com.example.dadmballdontlie.data.api.NbaRetrofitInterface;
 
-import java.util.ArrayList;
-import java.util.Properties;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,7 +33,12 @@ public class SharedViewModel extends AndroidViewModel {
     private final MutableLiveData<String> mText;
     private Retrofit retrofit;
     private NbaRetrofitInterface retrofitInterface;
+
     private NbaRepository repository;
+    private ApiRepository apiRepository;
+
+    public MutableLiveData<List<Team>> listTeam;
+    public MutableLiveData<List<Player>> listPlayer;
 
     public SharedViewModel(Application application) {
 
@@ -45,14 +47,42 @@ public class SharedViewModel extends AndroidViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This text comes from SharedViewModel");
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.balldontlie.io/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        retrofitInterface = retrofit.create(NbaRetrofitInterface.class);
-
+        listTeam = new MutableLiveData<>();
+        listPlayer = new MutableLiveData<>();
         repository = new NbaRepositoryImpl(application);
+        apiRepository = new ApiRepositoryImpl();
+
+        final ApiRepositoryCallBack apiRepositoryCallBack = new ApiRepositoryCallBack() {
+            @Override
+            public void receivedAllPlayers(PlayersResponse playersResponse) {
+                mText.setValue(playersResponse.getData().get(0).getFirst_name());
+                listPlayer.setValue(playersResponse.getData());
+            }
+
+            @Override
+            public void onFailedAllPlayers() {
+                mText.setValue("Cannot received players");
+            }
+
+            @Override
+            public void receivedAllTeams(TeamsResponse teamsResponse) {
+
+            }
+
+            @Override
+            public void onFailedAllTeams() {
+
+            }
+        };
+
+        //apiRepository.getSearchPlayer(apiRepositoryCallBack, "Davis");
+
+        initLiveData();
+    }
+
+    private void initLiveData() {
+        listTeam.setValue(repository.getAllTeams().getValue());
+        listPlayer.setValue(repository.getAllPlayers().getValue());
     }
 
     public LiveData<String> getText() {

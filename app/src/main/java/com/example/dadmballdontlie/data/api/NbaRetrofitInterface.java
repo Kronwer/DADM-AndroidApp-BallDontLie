@@ -1,4 +1,4 @@
-package com.example.dadmballdontlie.repositories;
+package com.example.dadmballdontlie.data.api;
 
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
@@ -30,5 +30,8 @@ public interface NbaRetrofitInterface {
 
     @GET("teams")
     Call<TeamsResponse> getAllTeams();
+
+    @GET("players")
+    Call<PlayersResponse> getSearchPlayer(@Query("page") String page, @Query("per_page") String per_page, @Query("search") String search);
 
 }
