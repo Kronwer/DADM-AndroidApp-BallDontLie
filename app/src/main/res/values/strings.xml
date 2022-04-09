@@ -4,11 +4,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_about">About</string>
-    <string name="about_message">Balls Don\'t Lie by \n\n Francisco Arjona \n\n Alejandro Ávila \n\n Christian García \n\n Daniel García \n\n Carlos Ramirez \n\n Developed for DADM 2022 </string>
+    <string name="about_message">Balls Don\'t Lie by \n\n Francisco Arjona \n\n Alejandro Ávila \n\n Christian García \n\n Daniel García \n\n Carlos Ramirez \n\n Developed for DADM 2022</string>
 
-    <string name="title_search">Buscar</string>
-    <string name="title_favs">Favoritos</string>
-    <string name="title_profile">Perfil</string>
+    <string name="title_search">Search</string>
+    <string name="title_favs">Favourites</string>
+    <string name="title_profile">Profile</string>
     <string name="position_C">Center</string>
     <string name="position_F">Forward</string>
     <string name="position_G">Guard</string>
@@ -20,6 +20,8 @@
     <string name="division_AT">Atlantic</string>
     <string name="division_PA">Pacific</string>
     <string name="division_CE" translatable="false">Central</string>
+    <string name="tabLayoutPlayers">Players</string>
+    <string name="tabLayoutTeams">Teams</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

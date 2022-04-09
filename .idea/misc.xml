@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_player_search.xml" value="0.34057971014492755" />
+        <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_search.xml" value="0.34057971014492755" />
+        <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/player_item.xml" value="0.33" />
+        <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/team_item.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/drawable/ic_ball.xml" value="0.144" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.2015625" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.2015625" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_dashboard.xml" value="0.41440217391304346" />
-        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_player_search.xml" value="0.33" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_search.xml" value="0.33" />
-        <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_team_search.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.175" />

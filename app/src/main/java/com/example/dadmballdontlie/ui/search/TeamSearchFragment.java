@@ -3,6 +3,8 @@ package com.example.dadmballdontlie.ui.search;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,19 +53,14 @@ public class TeamSearchFragment extends Fragment {
         adapter = new TeamAdapter();
         recyclerView.setAdapter(adapter);
 
-        new Thread(new Runnable() {
+        LiveData<List<Team>> list = nbaRepository.getAllTeams();
+        list.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
             @Override
-            public void run() {
-                List<Team> list = nbaRepository.getAllTeams();
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.updateList(list);
-                    }
-                });
+            public void onChanged(List<Team> teams) {
+                adapter.updateList(teams);
             }
-        }).start();
+        });
+
 
         return root;
     }

@@ -1,5 +1,6 @@
 package com.example.dadmballdontlie.data.local;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,10 +28,10 @@ public abstract class NbaDAO {
     public abstract void deleteTeam(Team team);
 
     @Query("select * from player")
-    public abstract List<Player> getPlayers();
+    public abstract LiveData<List<Player>> getPlayers();
 
     @Query("select * from team")
-    public abstract List<Team> getTeams();
+    public abstract LiveData<List<Team>> getTeams();
 
     @Query("delete from player")
     public abstract void deletePlayers();
@@ -39,9 +40,9 @@ public abstract class NbaDAO {
     public abstract void deleteTeams();
 
     @Query("select * from player where id = :idPlayer")
-    public abstract Player getPlayer(Integer idPlayer);
+    public abstract LiveData<Player> getPlayer(Integer idPlayer);
 
     @Query("select * from team where id = :idTeam")
-    public abstract Team getTeam(Integer idTeam);
+    public abstract LiveData<Team> getTeam(Integer idTeam);
 
 }

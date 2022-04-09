@@ -2,6 +2,8 @@ package com.example.dadmballdontlie.data.local;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 
@@ -36,12 +38,12 @@ public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
     }
 
     @Override
-    public List<Player> getAllPlayers() {
+    public LiveData<List<Player>> getAllPlayers() {
         return nbaDAO.getPlayers();
     }
 
     @Override
-    public List<Team> getAllTeams() {
+    public LiveData<List<Team>> getAllTeams() {
         return nbaDAO.getTeams();
     }
 
@@ -56,12 +58,12 @@ public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
     }
 
     @Override
-    public Player getPlayerWithId(Integer id) {
+    public LiveData<Player> getPlayerWithId(Integer id) {
         return nbaDAO.getPlayer(id);
     }
 
     @Override
-    public Team getTeamWithId(Integer id) {
+    public LiveData<Team> getTeamWithId(Integer id) {
         return nbaDAO.getTeam(id);
     }
 
