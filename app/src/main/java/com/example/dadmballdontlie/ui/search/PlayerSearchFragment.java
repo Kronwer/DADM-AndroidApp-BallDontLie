@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,26 +51,19 @@ public class PlayerSearchFragment extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
         recyclerView.setLayoutManager(manager);
-        recyclerView.addItemDecoration(itemDecoration);
+        //Add a separation line between items
+        //recyclerView.addItemDecoration(itemDecoration);
 
         adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
 
-        new Thread(new Runnable() {
+        LiveData<List<Player>> list = nbaRepository.getAllPlayers();
+        list.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
             @Override
-            public void run() {
-                List<Player> list = nbaRepository.getAllPlayers();
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.updateList(list);
-                    }
-                });
+            public void onChanged(List<Player> players) {
+                adapter.updateList(players);
             }
-        }).start();
-
-
+        });
 
         return root;
     }

@@ -1,5 +1,7 @@
 package com.example.dadmballdontlie.data.local;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 
@@ -15,16 +17,16 @@ public interface NbaLocalDataSource {
 
     void removeTeam(Team team);
 
-    List<Player> getAllPlayers();
+    LiveData<List<Player>> getAllPlayers();
 
-    List<Team> getAllTeams();
+    LiveData<List<Team>> getAllTeams();
 
     void removePlayers();
 
     void removeTeams();
 
-    Player getPlayerWithId(Integer id);
+    LiveData<Player> getPlayerWithId(Integer id);
 
-    Team getTeamWithId(Integer id);
+    LiveData<Team> getTeamWithId(Integer id);
 
 }

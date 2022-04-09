@@ -32,7 +32,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(listPlayers.get(position).getFirst_name());
+        holder.name.setText(listPlayers.get(position).getFirst_name() + " " + listPlayers.get(position).getLast_name());
+        holder.team.setText(listPlayers.get(position).getTeam().getFull_name());
     }
 
     @Override
@@ -42,17 +43,19 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
+        public TextView team;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewPlayer);
+            team = itemView.findViewById(R.id.textViewPlayerTeam);
         }
 
     }
 
     public void updateList(List<Player> players) {
-        listPlayers = players;
+        listPlayers.addAll(players);
         notifyDataSetChanged();
     }
 
