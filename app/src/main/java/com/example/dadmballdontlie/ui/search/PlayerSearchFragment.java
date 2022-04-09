@@ -1,5 +1,9 @@
 package com.example.dadmballdontlie.ui.search;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
@@ -24,6 +30,7 @@ import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +61,23 @@ public class PlayerSearchFragment extends Fragment {
         //Add a separation line between items
         //recyclerView.addItemDecoration(itemDecoration);
 
-        adapter = new PlayerAdapter();
+        adapter = new PlayerAdapter(new PlayerAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(Player player) {
+                try {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    String fullName = player.getFirst_name() + "_" + player.getLast_name();
+                    fullName = URLEncoder.encode(fullName, "UTF-8");
+                    intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search="
+                            + fullName));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(),
+                            R.string.search_error_message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         LiveData<List<Player>> list = nbaRepository.getAllPlayers();

@@ -35,6 +35,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_about"
             app:srcCompat="@drawable/ic_icon" />
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
