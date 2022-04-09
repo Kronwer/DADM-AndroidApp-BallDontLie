@@ -17,9 +17,11 @@ import java.util.List;
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
 
     private List<Team> listTeam;
+    private OnItemLongClickListener longClickListener;
 
-    public TeamAdapter(){
+    public TeamAdapter(OnItemLongClickListener listener){
         listTeam = new ArrayList<>();
+        longClickListener = listener;
     }
 
     @NonNull
@@ -47,8 +49,24 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewTeam);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    longClickListener.onItemLongClick(getTeam(getAdapterPosition()));
+                    return false;
+                }
+            });
         }
 
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Team team);
+    }
+
+    public Team getTeam(int position){
+        return listTeam.get(position);
     }
 
     public void updateList(List<Team> teams) {
