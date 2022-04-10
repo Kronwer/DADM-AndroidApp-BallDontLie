@@ -55,6 +55,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     }
 
     public void updateList(List<Player> players) {
+        listPlayers.clear();
         listPlayers.addAll(players);
         notifyDataSetChanged();
     }

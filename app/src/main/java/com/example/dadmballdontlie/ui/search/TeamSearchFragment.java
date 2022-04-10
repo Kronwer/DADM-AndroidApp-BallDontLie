@@ -50,10 +50,12 @@ public class TeamSearchFragment extends Fragment {
         adapter = new TeamAdapter();
         recyclerView.setAdapter(adapter);
 
-        sharedViewModel.listTeam.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
+        sharedViewModel.listTeamLocal.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
             @Override
             public void onChanged(List<Team> teams) {
-                adapter.updateList(teams);
+                if (teams != null) {
+                    adapter.updateList(teams);
+                }
             }
         });
 

@@ -3,9 +3,12 @@ package com.example.dadmballdontlie.viewmodels;
 import android.app.Application;
 import android.widget.Toast;
 
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 
 import com.example.dadmballdontlie.data.model.Data;
@@ -26,7 +29,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SharedViewModel extends AndroidViewModel {
 
@@ -37,8 +39,15 @@ public class SharedViewModel extends AndroidViewModel {
     private NbaRepository repository;
     private ApiRepository apiRepository;
 
-    public MutableLiveData<List<Team>> listTeam;
-    public MutableLiveData<List<Player>> listPlayer;
+    public LiveData<List<Team>> listTeamLocal;
+    public MutableLiveData<List<Team>> listTeamSearch;
+    public MediatorLiveData<List<Team>> mediatorListTeam;
+
+    public LiveData<List<Player>> listPlayerLocal;
+    public MutableLiveData<List<Player>> listPlayerSearch;
+    public MediatorLiveData<List<Player>> mediatorListPlayer;
+
+    private Boolean search;
 
     public SharedViewModel(Application application) {
 
@@ -47,8 +56,12 @@ public class SharedViewModel extends AndroidViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This text comes from SharedViewModel");
 
-        listTeam = new MutableLiveData<>();
-        listPlayer = new MutableLiveData<>();
+        search = true;
+
+        mediatorListPlayer = new MediatorLiveData<>();
+
+        listPlayerSearch = new MutableLiveData<>();
+
         repository = new NbaRepositoryImpl(application);
         apiRepository = new ApiRepositoryImpl();
 
@@ -56,7 +69,7 @@ public class SharedViewModel extends AndroidViewModel {
             @Override
             public void receivedAllPlayers(PlayersResponse playersResponse) {
                 mText.setValue(playersResponse.getData().get(0).getFirst_name());
-                listPlayer.setValue(playersResponse.getData());
+                listPlayerSearch.setValue(playersResponse.getData());
             }
 
             @Override
@@ -75,14 +88,44 @@ public class SharedViewModel extends AndroidViewModel {
             }
         };
 
-        //apiRepository.getSearchPlayer(apiRepositoryCallBack, "Davis");
+        apiRepository.getSearchPlayer(apiRepositoryCallBack, "Lebron");
 
         initLiveData();
+
+        mediatorListPlayer.addSource(listPlayerLocal, new Observer<List<Player>>() {
+            @Override
+            public void onChanged(List<Player> players) {
+                mediatorListPlayer.setValue(players);
+            }
+        });
     }
 
     private void initLiveData() {
-        listTeam.setValue(repository.getAllTeams().getValue());
-        listPlayer.setValue(repository.getAllPlayers().getValue());
+        listTeamLocal = repository.getAllTeams();
+        listPlayerLocal = repository.getAllPlayers();
+    }
+
+    public void getPlayersSearch() {
+        if (search) {
+            mediatorListPlayer.removeSource(listPlayerLocal);
+
+            mediatorListPlayer.addSource(listPlayerSearch, new Observer<List<Player>>() {
+                @Override
+                public void onChanged(List<Player> players) {
+                    mediatorListPlayer.setValue(players);
+                }
+            });
+        } else {
+            mediatorListPlayer.removeSource(listPlayerSearch);
+
+            mediatorListPlayer.addSource(listPlayerLocal, new Observer<List<Player>>() {
+                @Override
+                public void onChanged(List<Player> players) {
+                    mediatorListPlayer.setValue(players);
+                }
+            });
+        }
+        search = !search;
     }
 
     public LiveData<String> getText() {

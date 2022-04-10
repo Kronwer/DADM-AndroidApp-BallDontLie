@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -15,16 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dadmballdontlie.repositories.NbaRepository;
-import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.adapter.PlayerAdapter;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSearchFragment extends Fragment {
@@ -54,14 +49,21 @@ public class PlayerSearchFragment extends Fragment {
         adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
 
-        sharedViewModel.listPlayer.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
+        binding.floaText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(List<Player> players) {
-                adapter.updateList(players);
+            public void onClick(View view) {
+                sharedViewModel.getPlayersSearch();
             }
         });
 
-        //sharedViewModel.listPlayerApi.ob
+        sharedViewModel.mediatorListPlayer.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
+            @Override
+            public void onChanged(List<Player> players) {
+                if (players != null) {
+                    adapter.updateList(players);
+                }
+            }
+        });
 
         return root;
     }
