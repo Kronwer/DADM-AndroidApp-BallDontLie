@@ -47,7 +47,29 @@ public class SharedViewModel extends AndroidViewModel {
     public MutableLiveData<List<Player>> listPlayerSearch;
     public MediatorLiveData<List<Player>> mediatorListPlayer;
 
-    private Boolean search;
+    final ApiRepositoryCallBack apiRepositoryCallBack = new ApiRepositoryCallBack() {
+        @Override
+        public void receivedAllPlayers(PlayersResponse playersResponse) {
+            if(playersResponse!= null && playersResponse.getData() != null && playersResponse.getData().size() != 0){
+                listPlayerSearch.setValue(playersResponse.getData());
+            }
+        }
+
+        @Override
+        public void onFailedAllPlayers() {
+            mText.setValue("Cannot received players");
+        }
+
+        @Override
+        public void receivedAllTeams(TeamsResponse teamsResponse) {
+
+        }
+
+        @Override
+        public void onFailedAllTeams() {
+
+        }
+    };
 
     public SharedViewModel(Application application) {
 
@@ -56,39 +78,12 @@ public class SharedViewModel extends AndroidViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This text comes from SharedViewModel");
 
-        search = true;
-
         mediatorListPlayer = new MediatorLiveData<>();
 
         listPlayerSearch = new MutableLiveData<>();
 
         repository = new NbaRepositoryImpl(application);
         apiRepository = new ApiRepositoryImpl();
-
-        final ApiRepositoryCallBack apiRepositoryCallBack = new ApiRepositoryCallBack() {
-            @Override
-            public void receivedAllPlayers(PlayersResponse playersResponse) {
-                mText.setValue(playersResponse.getData().get(0).getFirst_name());
-                listPlayerSearch.setValue(playersResponse.getData());
-            }
-
-            @Override
-            public void onFailedAllPlayers() {
-                mText.setValue("Cannot received players");
-            }
-
-            @Override
-            public void receivedAllTeams(TeamsResponse teamsResponse) {
-
-            }
-
-            @Override
-            public void onFailedAllTeams() {
-
-            }
-        };
-
-        apiRepository.getSearchPlayer(apiRepositoryCallBack, "Lebron");
 
         initLiveData();
 
@@ -105,9 +100,11 @@ public class SharedViewModel extends AndroidViewModel {
         listPlayerLocal = repository.getAllPlayers();
     }
 
-    public void getPlayersSearch() {
-        if (search) {
+    public void getPlayersSearch(String search) {
+        if (!search.equals("")) {
             mediatorListPlayer.removeSource(listPlayerLocal);
+            mediatorListPlayer.removeSource(listPlayerSearch);
+            apiRepository.getSearchPlayer(apiRepositoryCallBack, search);
 
             mediatorListPlayer.addSource(listPlayerSearch, new Observer<List<Player>>() {
                 @Override
@@ -117,6 +114,7 @@ public class SharedViewModel extends AndroidViewModel {
             });
         } else {
             mediatorListPlayer.removeSource(listPlayerSearch);
+            mediatorListPlayer.removeSource(listPlayerLocal);
 
             mediatorListPlayer.addSource(listPlayerLocal, new Observer<List<Player>>() {
                 @Override
@@ -125,7 +123,6 @@ public class SharedViewModel extends AndroidViewModel {
                 }
             });
         }
-        search = !search;
     }
 
     public LiveData<String> getText() {

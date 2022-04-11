@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
@@ -49,10 +50,24 @@ public class PlayerSearchFragment extends Fragment {
         adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
 
-        binding.floaText.setOnClickListener(new View.OnClickListener() {
+        binding.inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-                sharedViewModel.getPlayersSearch();
+            public boolean onQueryTextSubmit(String s) {
+                sharedViewModel.getPlayersSearch(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                sharedViewModel.getPlayersSearch(s);
+                return false;
+            }
+        });
+        binding.inputSearch.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                sharedViewModel.getPlayersSearch("");
+                return false;
             }
         });
 
