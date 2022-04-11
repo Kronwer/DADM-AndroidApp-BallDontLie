@@ -50,6 +50,9 @@ public class PlayerSearchFragment extends Fragment {
         adapter = new PlayerAdapter();
         recyclerView.setAdapter(adapter);
 
+        // Expand the ViewSearch
+        binding.inputSearch.onActionViewExpanded();
+
         binding.inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
