@@ -129,45 +129,7 @@ public class SharedViewModel extends AndroidViewModel {
         return mText;
     }
 
-    // EXAMPLE CODE
-    public void getFirstTeam() {
 
-        Call<Team> call = retrofitInterface.getTeamById(14);
-
-        call.enqueue(new Callback<Team>() {
-            @Override
-            public void onResponse(Call<Team> call, Response<Team> response) {
-                mText.setValue(response.body().getName());
-            }
-
-            @Override
-            public void onFailure(Call<Team> call, Throwable t) {
-                mText.setValue("Error while retrieving team");
-            }
-        });
-
-    }
-
-    // EXAMPLE CODE
-    public void getPlayerName() {
-
-        Call<Player> call = retrofitInterface.getPlayerById(237);
-
-        call.enqueue(new Callback<Player>() {
-            @Override
-            public void onResponse(Call<Player> call, Response<Player> response) {
-                mText.setValue(response.body().getFirst_name());
-            }
-
-            @Override
-            public void onFailure(Call<Player> call, Throwable t) {
-                mText.setValue("Error while retrieving player");
-            }
-        });
-
-    }
-
-    // EXAMPLE CODE
     public void getPlayerStatFromCurrentSeason() {
 
         Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(237);
