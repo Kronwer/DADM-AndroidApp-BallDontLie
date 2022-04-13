@@ -1,5 +1,6 @@
 package com.example.dadmballdontlie.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import java.util.List;
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder>{
 
     private List<Player> listPlayers;
+    private OnItemClickListener onItemClickListener;
 
-    public PlayerAdapter(){
+    public PlayerAdapter(OnItemClickListener onItemClickListener){
         listPlayers = new ArrayList<>();
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -50,8 +53,20 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
             name = itemView.findViewById(R.id.textViewPlayer);
             team = itemView.findViewById(R.id.textViewPlayerTeam);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(listPlayers.get(getAdapterPosition()));
+                    Log.i("DEBUG: ", getAdapterPosition()+"");
+                }
+            });
         }
 
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Player player);
     }
 
     public void updateList(List<Player> players) {

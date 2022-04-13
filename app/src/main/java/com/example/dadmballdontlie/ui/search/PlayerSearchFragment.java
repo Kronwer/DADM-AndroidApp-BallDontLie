@@ -6,15 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.adapter.PlayerAdapter;
@@ -47,7 +50,12 @@ public class PlayerSearchFragment extends Fragment {
         //Add a separation line between items
         //recyclerView.addItemDecoration(itemDecoration);
 
-        adapter = new PlayerAdapter();
+        adapter = new PlayerAdapter(new PlayerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Player player) {
+                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment);
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         // Expand the ViewSearch
