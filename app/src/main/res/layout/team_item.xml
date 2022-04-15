@@ -7,37 +7,45 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    android:outlineSpotShadowColor="@color/pink"
+    android:outlineSpotShadowColor="@color/black"
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:layout_marginStart="10dp">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewTeamFullName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="start|center_vertical"
         android:minHeight="42dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTeamName"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        tools:text="Item"
-        android:textStyle="bold"/>
+        tools:text="Item" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewTeamName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end|center_vertical"
+        android:layout_height="match_parent"
+        android:gravity="start|center_vertical"
         android:minHeight="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTeamFullName"
         tools:text="Item"
         android:textStyle="italic"/>
+</LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imageViewTeam"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="right"/>
 
 
 </androidx.cardview.widget.CardView>

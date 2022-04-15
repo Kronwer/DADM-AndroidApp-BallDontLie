@@ -56,6 +56,7 @@ public class TeamSearchFragment extends Fragment {
             public void onChanged(List<Team> teams) {
                 if (teams != null) {
                     adapter.updateList(teams);
+                    adapter.loadTeamImages(getContext());
                 }
             }
         });
