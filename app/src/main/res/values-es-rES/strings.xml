@@ -22,4 +22,5 @@
     <string name="title_profile">Perfil</string>
     <string name="about_message">"Balls Don't Lie por    Francisco Arjona    Alejandro Ávila    Christian García    Daniel García    Carlos Ramirez    Desarrollado para DADM 2022 "</string>
     <string name="search_error_message">Ha ocurrido un error, por favor intentelo otra vez</string>
+    <string name="title_player">Perfil del Jugador</string>
 </resources>

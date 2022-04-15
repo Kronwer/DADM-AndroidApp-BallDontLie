@@ -1,5 +1,6 @@
 package com.example.dadmballdontlie.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     private List<Player> listPlayers;
     private OnItemLongClickListener longClickListener;
+    private OnItemClickListener onItemClickListener;
 
-    public PlayerAdapter(OnItemLongClickListener listener){
+    public PlayerAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener){
         listPlayers = new ArrayList<>();
         longClickListener = listener;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -60,12 +63,23 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
                     return true;
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(getPlayer(getAdapterPosition()));
+                }
+            });
         }
 
     }
 
     public interface OnItemLongClickListener {
         void onItemLongClick(Player player);
+    }
+    
+    public interface OnItemClickListener {
+        void onItemClick(Player player);
     }
 
     public void updateList(List<Player> players) {

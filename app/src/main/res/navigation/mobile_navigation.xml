@@ -15,7 +15,11 @@
         android:id="@+id/navigation_search"
         android:name="com.example.dadmballdontlie.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favs"
@@ -28,4 +32,9 @@
         android:name="com.example.dadmballdontlie.ui.about.AboutFragment"
         android:label="@string/title_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.example.dadmballdontlie.ui.player.PlayerFragment"
+        android:label="@string/title_player"
+        tools:layout="@layout/fragment_player" />
 </navigation>

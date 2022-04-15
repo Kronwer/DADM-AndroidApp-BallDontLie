@@ -10,10 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
+import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.adapter.PlayerAdapter;
@@ -74,7 +77,21 @@ public class PlayerSearchFragment extends Fragment {
                             R.string.search_error_message, Toast.LENGTH_SHORT).show();
                 }
             }
+        }, new PlayerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Player player) {
+                Bundle bundle = new Bundle();
+                bundle.putString("first_name", player.getFirst_name());
+                bundle.putString("last_name", player.getLast_name());
+                bundle.putString("position", player.getPosition());
+                bundle.putInt("height_feet", player.getHeight_feet());
+                bundle.putInt("height_inches", player.getHeight_inches());
+                bundle.putInt("weight_pounds", player.getWeight_pounds());
+                bundle.putString("team_name", player.getTeam().getName());
+                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment, bundle);
+            }
         });
+        
         recyclerView.setAdapter(adapter);
 
         // Expand the ViewSearch
