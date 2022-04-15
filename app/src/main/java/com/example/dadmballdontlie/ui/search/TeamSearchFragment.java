@@ -45,7 +45,8 @@ public class TeamSearchFragment extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
         recyclerView.setLayoutManager(manager);
-        recyclerView.addItemDecoration(itemDecoration);
+        //Add a separation line between items
+        //recyclerView.addItemDecoration(itemDecoration);
 
         adapter = new TeamAdapter();
         recyclerView.setAdapter(adapter);

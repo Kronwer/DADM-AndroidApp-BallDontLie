@@ -12,15 +12,32 @@
     app:cardElevation="8dp">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewTeam"
+        android:id="@+id/textViewTeamFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start|center_vertical"
         android:minHeight="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Item" />
+        android:layout_marginStart="10dp"
+        tools:text="Item"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:minHeight="42dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        tools:text="Item"
+        android:textStyle="italic"/>
+
 
 </androidx.cardview.widget.CardView>
