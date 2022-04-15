@@ -22,6 +22,7 @@
     <string name="division_CE" translatable="false">Central</string>
     <string name="tabLayoutPlayers">Players</string>
     <string name="tabLayoutTeams">Teams</string>
+    <string name="search_error_message">Something went wrong, please try again</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

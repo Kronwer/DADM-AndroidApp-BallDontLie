@@ -26,8 +26,6 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
-    private SharedViewModel sharedViewModel;
-    private TeamAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
 
@@ -36,26 +34,9 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        /*
-        sharedViewModel = new ViewModelProvider(requireActivity(),
-                new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
-        RecyclerView recyclerView = binding.recyclerView;
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
-
-        recyclerView.setLayoutManager(manager);
-        recyclerView.addItemDecoration(itemDecoration);
-
-        List<Team> list = fakeLists();
-        adapter = new TeamAdapter(list);
-        recyclerView.setAdapter(adapter);
-        */
         tabLayout = root.findViewById(R.id.tabLayout);
         viewPager = root.findViewById(R.id.page);
-
-        //tabLayout.setupWithViewPager(viewPager);
-
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPagerAdapter.addFragment(new PlayerSearchFragment(),"Player Search");

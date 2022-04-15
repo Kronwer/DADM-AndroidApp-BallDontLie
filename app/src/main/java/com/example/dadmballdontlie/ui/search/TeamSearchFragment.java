@@ -1,5 +1,7 @@
 package com.example.dadmballdontlie.ui.search;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.adapter.TeamAdapter;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
@@ -22,6 +26,7 @@ import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentTeamSearchBinding;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +50,28 @@ public class TeamSearchFragment extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
         recyclerView.setLayoutManager(manager);
-        //Add a separation line between items
-        //recyclerView.addItemDecoration(itemDecoration);
 
-        adapter = new TeamAdapter();
+        adapter = new TeamAdapter(new TeamAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(Team team) {
+                try {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    String teamName = team.getName();
+                    teamName = URLEncoder.encode(teamName, "UTF-8");
+                    teamName = teamName.toLowerCase();
+                    if(teamName.equals("76ers")){
+                        teamName = "sixers";
+                    }
+                    intent.setData(Uri.parse("https://es.global.nba.com/teams/#!/"
+                            + teamName));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(),
+                            R.string.search_error_message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         sharedViewModel.listTeamLocal.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {

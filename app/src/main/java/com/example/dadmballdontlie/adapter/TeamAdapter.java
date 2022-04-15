@@ -23,9 +23,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
 
     private List<Team> listTeam;
     private HashMap<String, Drawable> imageTeam = new HashMap<>();
+    private OnItemLongClickListener longClickListener;
 
-    public TeamAdapter(){
+    public TeamAdapter(OnItemLongClickListener listener){
         listTeam = new ArrayList<>();
+        longClickListener = listener;
     }
 
     @NonNull
@@ -96,8 +98,24 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
             fullName = itemView.findViewById(R.id.textViewTeamFullName);
             name = itemView.findViewById(R.id.textViewTeamName);
             imageView = itemView.findViewById(R.id.imageViewTeam);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    longClickListener.onItemLongClick(getTeam(getAdapterPosition()));
+                    return false;
+                }
+            });
         }
 
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Team team);
+    }
+
+    public Team getTeam(int position){
+        return listTeam.get(position);
     }
 
     public void updateList(List<Team> teams) {
