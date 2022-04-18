@@ -1,5 +1,7 @@
 package com.example.dadmballdontlie.data.model;
 
+import android.os.Bundle;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -94,5 +96,17 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        bundle.putString("abbreviation", abbreviation);
+        bundle.putString("city", city);
+        bundle.putString("conference", conference);
+        bundle.putString("division", division);
+        bundle.putString("full_name", full_name);
+        bundle.putString("name", name);
+        return bundle;
     }
 }

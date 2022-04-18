@@ -1,5 +1,7 @@
 package com.example.dadmballdontlie.data.model;
 
+import android.os.Bundle;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
@@ -107,5 +109,18 @@ public class Player {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        bundle.putString("first_name", first_name);
+        bundle.putString("last_name", last_name);
+        bundle.putString("position", position);
+        bundle.putInt("height_feet", height_feet);
+        bundle.putInt("height_inches", height_inches);
+        bundle.putInt("weight_pounds", weight_pounds);
+        bundle.putBundle("team", team.getBundle());
+        return bundle;
     }
 }

@@ -5,6 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_about">About</string>
     <string name="title_player">Player Profile</string>
+    <string name="title_team">Team Profile</string>
     <string name="about_message">Balls Don\'t Lie by \n\n Francisco Arjona \n\n Alejandro Ávila \n\n Christian García \n\n Daniel García \n\n Carlos Ramirez \n\n Developed for DADM 2022</string>
 
     <string name="title_search">Search</string>
@@ -26,4 +27,8 @@
     <string name="search_error_message">Something went wrong, please try again</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <!-- Team Profile -->
+    <string name="team_conference">Conference %1$s</string>
+    <string name="team_division">Division %1$s</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,11 @@ public class TeamSearchFragment extends Fragment {
                     Toast.makeText(getContext(),
                             R.string.search_error_message, Toast.LENGTH_SHORT).show();
                 }
+            }
+        }, new TeamAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Team team) {
+                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_teamFragment, team.getBundle());
             }
         });
         recyclerView.setAdapter(adapter);
