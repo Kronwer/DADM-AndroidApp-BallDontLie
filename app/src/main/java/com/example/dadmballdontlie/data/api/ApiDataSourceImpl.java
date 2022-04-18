@@ -1,7 +1,11 @@
 package com.example.dadmballdontlie.data.api;
 
+import com.example.dadmballdontlie.data.model.Data;
+import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.PlayersResponse;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.TeamsResponse;
+import com.example.dadmballdontlie.repositories.ApiRepositoryCallBack;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +74,23 @@ public class ApiDataSourceImpl implements ApiDataSource {
             @Override
             public void onFailure(Call<PlayersResponse> call, Throwable t) {
                 apiDataSourceCallBack.onFailedAllPlayers();
+            }
+        });
+    }
+
+    @Override
+    public void getStatFromCurrentSeason(ApiDataSourceCallBack apiDataSourceCallBack, Player player) {
+        Call<Data> call = nbaRetrofitInterface.getPlayerStatFromCurrentSeason(player.getId());
+
+        call. enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(Call<Data> call, Response<Data> response) {
+                apiDataSourceCallBack.receivedStat(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Data> call, Throwable t) {
+                apiDataSourceCallBack.onFailedStat();
             }
         });
     }

@@ -14,6 +14,7 @@ import androidx.lifecycle.Transformations;
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.PlayersResponse;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.data.model.TeamsResponse;
 import com.example.dadmballdontlie.repositories.ApiRepository;
@@ -48,6 +49,8 @@ public class SharedViewModel extends AndroidViewModel {
     public MutableLiveData<List<Player>> listPlayerSearch;
     public MediatorLiveData<List<Player>> mediatorListPlayer;
 
+    public MutableLiveData<Stat> stat;
+
     final ApiRepositoryCallBack apiRepositoryCallBack = new ApiRepositoryCallBack() {
         @Override
         public void receivedAllPlayers(PlayersResponse playersResponse) {
@@ -70,6 +73,16 @@ public class SharedViewModel extends AndroidViewModel {
         public void onFailedAllTeams() {
 
         }
+
+        @Override
+        public void receivedStat(Data data) {
+            stat.setValue(data.getFirstStat());
+        }
+
+        @Override
+        public void onFailedStat() {
+
+        }
     };
 
     public SharedViewModel(Application application) {
@@ -78,6 +91,8 @@ public class SharedViewModel extends AndroidViewModel {
 
         mText = new MutableLiveData<>();
         mText.setValue("This text comes from SharedViewModel");
+
+        stat = new MutableLiveData<>();
 
         mediatorListPlayer = new MediatorLiveData<>();
 
@@ -100,6 +115,7 @@ public class SharedViewModel extends AndroidViewModel {
     private void initLiveData() {
         listTeamLocal = repository.getAllTeams();
         listPlayerLocal = repository.getAllPlayers();
+        stat.setValue(new Stat());
     }
 
     public void getPlayersSearch(String search) {
@@ -132,14 +148,18 @@ public class SharedViewModel extends AndroidViewModel {
     }
 
 
-    public void getPlayerStatFromCurrentSeason() {
+    public void getStatFromCurrentSeason(Player player){
+        apiRepository.getStatFromCurrentSeason(apiRepositoryCallBack, player);
+    }
 
-        Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(237);
+    public void getPlayerStatFromCurrentSeason(Player player) {
+
+        Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(player.getId());
 
         call.enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
-                mText.setValue(response.body().getFirstStat().getFreeThrowsPercentage() + "");
+                mText.setValue(response.body().getFirstStat().getMinutes());
             }
 
             @Override

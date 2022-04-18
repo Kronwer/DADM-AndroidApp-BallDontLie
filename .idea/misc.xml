@@ -3,20 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
+        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.24365942028985507" />
+        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/drawable/ic_ball.xml" value="0.1895" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/drawable/ic_bulls.xml" value="0.3635" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/drawable/ic_icon.xml" value="0.1895" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.31567028985507245" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.1" />
+        <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_player.xml" value="0.33" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_player_search.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_search.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_team_search.xml" value="0.31567028985507245" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/player_item.xml" value="0.1" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/layout/team_item.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/Dagarsa/Documents/GitHub/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.24365942028985507" />
-        <entry key="..\:/GitHub/DADMBallDontLie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/drawable/ic_ball.xml" value="0.144" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/activity_main.xml" value="0.2015625" />
         <entry key="..\:/Users/WINDOWS10/Desktop/Proyectos/DADMBallDontLie/app/src/main/res/layout/fragment_about.xml" value="0.2015625" />

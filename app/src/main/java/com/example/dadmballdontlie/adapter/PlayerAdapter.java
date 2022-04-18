@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.data.model.Player;
+import com.example.dadmballdontlie.data.model.Stat;
 
 import java.util.ArrayList;
 import java.util.List;

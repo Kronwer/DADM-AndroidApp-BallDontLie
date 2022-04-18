@@ -24,6 +24,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.dadmballdontlie.R;
+import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.R;
@@ -88,6 +89,7 @@ public class PlayerSearchFragment extends Fragment {
                 bundle.putInt("height_inches", player.getHeight_inches());
                 bundle.putInt("weight_pounds", player.getWeight_pounds());
                 bundle.putString("team_name", player.getTeam().getName());
+                sharedViewModel.getStatFromCurrentSeason(player);
                 Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment, bundle);
             }
         });

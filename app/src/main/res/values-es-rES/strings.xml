@@ -23,4 +23,25 @@
     <string name="about_message">"Balls Don't Lie por    Francisco Arjona    Alejandro Ávila    Christian García    Daniel García    Carlos Ramirez    Desarrollado para DADM 2022 "</string>
     <string name="search_error_message">Ha ocurrido un error, por favor intentelo otra vez</string>
     <string name="title_player">Perfil del Jugador</string>
+    <string name="stat_error_message">no hay estadísticas de este jugador</string>
+    <string name="stat_ast_def">Asistencias</string>
+    <string name="stat_blk_def">Bloqueos</string>
+    <string name="stat_dreb_def">Rebotes Defensivos</string>
+    <string name="stat_fg3_pct_def">Porcentaje triples</string>
+    <string name="stat_fg3a_def">Triples intentados</string>
+    <string name="stat_fg3m_def">Triples anotados</string>
+    <string name="stat_fg_pct_def">Porcentaje tiros</string>
+    <string name="stat_fga_def">Tiros intentados</string>
+    <string name="stat_fgm_def">Tiros anotados</string>
+    <string name="stat_fta_def">Tiros libres intentados</string>
+    <string name="stat_ftm_def">Tiros libres anotados</string>
+    <string name="stat_min_def">Minutos</string>
+    <string name="stat_oreb_def">Rebotes Ofensivos</string>
+    <string name="stat_pf_def">Faltas personales</string>
+    <string name="stat_pts_def">Puntos</string>
+    <string name="stat_reb_def">Rebotes</string>
+    <string name="stat_stl_def">Robos</string>
+    <string name="stat_turnover_def">Pérdidas</string>
+    <string name="stat_ft_pct_def">Porcentaje tiros libres</string>
+    <string name="stat_glossary">Glosario</string>
 </resources>

@@ -3,6 +3,8 @@ package com.example.dadmballdontlie.repositories;
 import com.example.dadmballdontlie.data.api.ApiDataSource;
 import com.example.dadmballdontlie.data.api.ApiDataSourceCallBack;
 import com.example.dadmballdontlie.data.api.ApiDataSourceImpl;
+import com.example.dadmballdontlie.data.model.Data;
+import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.PlayersResponse;
 import com.example.dadmballdontlie.data.model.TeamsResponse;
 
@@ -32,6 +34,16 @@ public class ApiRepositoryImpl implements ApiRepository {
         public void onFailedAllTeams() {
             apiRepositoryCallBack.onFailedAllTeams();
         }
+
+        @Override
+        public void receivedStat(Data data) {
+            apiRepositoryCallBack.receivedStat(data);
+        }
+
+        @Override
+        public void onFailedStat() {
+            apiRepositoryCallBack.onFailedStat();
+        }
     };
 
     public ApiRepositoryImpl() {
@@ -54,6 +66,12 @@ public class ApiRepositoryImpl implements ApiRepository {
     public void getSearchPlayer(ApiRepositoryCallBack apiRepositoryCallBack, String search) {
         this.apiRepositoryCallBack = apiRepositoryCallBack;
         apiDataSource.getSearchPlayer(apiDataSourceCallBack, search);
+    }
+
+    @Override
+    public void getStatFromCurrentSeason(ApiRepositoryCallBack apiRepositoryCallBack, Player player) {
+        this.apiRepositoryCallBack = apiRepositoryCallBack;
+        apiDataSource.getStatFromCurrentSeason(apiDataSourceCallBack, player);
     }
 
 }

@@ -16,6 +16,7 @@ public class Data {
     }
 
     public Stat getFirstStat(){
-        return data.get(0);
+        if (data.size() > 0) return data.get(0);
+        else return new Stat();
     }
 }

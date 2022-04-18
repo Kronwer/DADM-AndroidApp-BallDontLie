@@ -24,6 +24,46 @@
     <string name="tabLayoutPlayers">Players</string>
     <string name="tabLayoutTeams">Teams</string>
     <string name="search_error_message">Something went wrong, please try again</string>
+    <string name="stat_error_message">there are no stats for this player</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="stat_ast_def">Assists</string>
+    <string name="stat_ast" translatable="false">ast</string>
+    <string name="stat_blk_def">Blocks</string>
+    <string name="stat_blk" translatable="false">blk</string>
+    <string name="stat_dreb_def">Defensive Rebounds</string>
+    <string name="stat_dreb" translatable="false">dreb</string>
+    <string name="stat_fg3_pct_def">3 Point Field Goals Percentage</string>
+    <string name="stat_fg3_pct" translatable="false">fg3_pct</string>
+    <string name="stat_fg3a_def">3 Point Field Goals Attempted</string>
+    <string name="stat_fg3a" translatable="false">fg3a</string>
+    <string name="stat_fg3m_def">3 Point Field Goals Made</string>
+    <string name="stat_fg3m" translatable="false">fg3m</string>
+    <string name="stat_fg_pct_def">Point Field Goals Percentage</string>
+    <string name="stat_fg_pct" translatable="false">fg_pct</string>
+    <string name="stat_fga_def">Point Field Goals Attempted</string>
+    <string name="stat_fga" translatable="false">fga</string>
+    <string name="stat_fgm_def">Point Field Goals Made</string>
+    <string name="stat_fgm" translatable="false">fgm</string>
+    <string name="stat_fta_def">Free Throws Attempted</string>
+    <string name="stat_fta" translatable="false">fta</string>
+    <string name="stat_ftm_def">Free Throws Made</string>
+    <string name="stat_ftm" translatable="false">ftm</string>
+    <string name="stat_min_def">Minutes</string>
+    <string name="stat_min" translatable="false">min</string>
+    <string name="stat_oreb_def">Offensive Rebounds</string>
+    <string name="stat_oreb" translatable="false">oreb</string>
+    <string name="stat_pf_def">Personal Fouls</string>
+    <string name="stat_pf" translatable="false">pf</string>
+    <string name="stat_pts_def">Points</string>
+    <string name="stat_pts" translatable="false">pts</string>
+    <string name="stat_reb_def">Rebounds</string>
+    <string name="stat_reb" translatable="false">reb</string>
+    <string name="stat_stl_def">Steals</string>
+    <string name="stat_stl" translatable="false">stl</string>
+    <string name="stat_turnover_def">Turnover</string>
+    <string name="stat_turnover" translatable="false">tor</string>
+    <string name="stat_ft_pct_def">Free Throws Percentage</string>
+    <string name="stat_ft_pct" translatable="false">ft_pct</string>
+    <string name="stat_glossary">Glossary</string>
 </resources>

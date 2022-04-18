@@ -100,6 +100,8 @@ public class Stat {
     @SerializedName("ft_pct")
     private double freeThrowsPercentage;
 
+    public Stat(){}
+
     public Stat(int playerId, int gamesPlayed, int season, String minutes, double pointsMade, double pointsAttempted,
                 double points3Made, double points3Attempted, double freeThrowsMade, double freeThrowsAttempted, double offensiveRebounds,
                 double defensiveRebounds, double rebounds, double assists, double steals, double blocks, double turnover, double personalFaults,
