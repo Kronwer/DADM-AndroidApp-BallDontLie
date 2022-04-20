@@ -66,4 +66,9 @@
     <string name="stat_ft_pct_def">Free Throws Percentage</string>
     <string name="stat_ft_pct" translatable="false">ft_pct</string>
     <string name="stat_glossary">Glossary</string>
+    
+    <string name="positionC">Center</string>
+    <string name="positionF">Forward</string>
+    <string name="positionG">Guard</string>
+    
 </resources>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,11 +39,16 @@ public class PlayerFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity(),
                 new SharedViewModelFactory(requireActivity().getApplication())).get(SharedViewModel.class);
 
+        String position = changePosition(getPlayerPosition());
+
         binding.nameTextView.setText(getPlayerName());
-        binding.positionTextView.setText(getPlayerPosition());
-        binding.heightTextView.setText(getPlayerHeight());
-        binding.weightTextView.setText(getPlayerWeight());
+        binding.positionTextView.setText(position);
+        binding.heightTextView.setText(getPlayerHeight() + "m");
+        binding.weightTextView.setText(getPlayerWeight() + "kg");
         binding.teamTextView.setText(getPlayerTeam());
+        // Añadir icono del equipo
+        binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_warriors));
+
 
         binding.textViewStatMin.setText("0");
         binding.textViewStatPts.setText("0");
@@ -191,5 +195,24 @@ public class PlayerFragment extends Fragment {
     private void setStat(Stat stat){
         this.stat = stat;
     }
+
+    private String changePosition(String pos){
+        String aux = "-";
+
+        switch (pos){
+            case "C":
+               aux =  getString(R.string.position_C);
+                break;
+            case "F":
+                aux = getString(R.string.position_F);
+                break;
+            case "G":
+                aux = getString(R.string.position_G);
+                break;
+        }
+        return aux;
+    }
+
+
 
 }

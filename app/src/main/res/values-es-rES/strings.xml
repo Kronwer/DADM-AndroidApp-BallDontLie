@@ -44,4 +44,7 @@
     <string name="stat_turnover_def">Pérdidas</string>
     <string name="stat_ft_pct_def">Porcentaje tiros libres</string>
     <string name="stat_glossary">Glosario</string>
+    <string name="positionC">Pivot</string>
+    <string name="positionF">Alero</string>
+    <string name="positionG">Base</string>
 </resources>

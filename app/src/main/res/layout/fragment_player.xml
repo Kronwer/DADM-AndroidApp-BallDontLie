@@ -12,25 +12,27 @@
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="116dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/positionTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="3dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="I'm nameTextView"/>
+            android:inputType="textMultiLine"
+            tools:text="I'm name TextView" />
 
         <TextView
             android:id="@+id/positionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/heightTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-            tools:text="I'm positionTextView"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="5dp"
+            tools:text="I'm positionTextView" />
 
         <TextView
             android:id="@+id/heightTextView"
@@ -41,6 +43,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/positionTextView"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="5dp"
             tools:text="I'm heightTextView"/>
 
         <TextView
@@ -49,26 +53,38 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/heightTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/teamTextView"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="5dp"
             tools:text="I'm weightTextView" />
 
         <TextView
             android:id="@+id/teamTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weightTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="3dp"
+            android:textStyle="italic"
             tools:text="I'm teamTextView" />
 
 
+        <ImageView
+            android:id="@+id/imageViewPlayer"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:layout_constraintBottom_toBottomOf="@+id/weightTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/positionTextView"
+            android:layout_marginEnd="32dp" />
+
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayoutStat"
-            app:layout_constraintTop_toBottomOf="@+id/teamTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/weightTextView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutStat"
@@ -78,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamTextView"
+            app:layout_constraintTop_toBottomOf="@+id/weightTextView"
             app:layout_constraintVertical_bias="0.0">
 
             <Button
