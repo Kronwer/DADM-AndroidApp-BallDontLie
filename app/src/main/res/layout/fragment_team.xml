@@ -15,10 +15,13 @@
             android:id="@+id/teamNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Team Name"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Golden State Warriors" />
 
         <ImageView
             android:id="@+id/teamLogoImageView"
@@ -32,18 +35,20 @@
             android:id="@+id/teamCityTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/teamLogoImageView"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Team City"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamLogoImageView"
+            tools:text="Golden State" />
 
         <TextView
             android:id="@+id/teamConferenceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            app:layout_constraintTop_toBottomOf="@+id/teamCityTextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamCityTextView"
             tools:text="@string/team_conference" />
 
         <TextView
@@ -51,8 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/teamConferenceTextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamConferenceTextView"
             tools:text="@string/team_division" />
 
         <TextView
