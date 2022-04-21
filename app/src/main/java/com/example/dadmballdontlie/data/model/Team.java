@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.dadmballdontlie.R;
+
 @Entity(tableName = "team")
 public class Team {
     @PrimaryKey
@@ -107,6 +109,43 @@ public class Team {
         bundle.putString("division", division);
         bundle.putString("full_name", full_name);
         bundle.putString("name", name);
+        bundle.putInt("team_logo", getTeamLogo());
         return bundle;
+    }
+
+    public int getTeamLogo() {
+        switch (name) {
+            case "Bucks": return R.drawable.ic_bucks;
+            case "Bulls": return R.drawable.ic_bulls;
+            case "Cavaliers": return R.drawable.ic_cavaliers;
+            case "Celtics": return R.drawable.ic_celtics;
+            case "Clippers": return R.drawable.ic_clippers;
+            case "Grizzlies": return R.drawable.ic_grizzlies;
+            case "Hawks": return R.drawable.ic_hawks;
+            case "Heat": return R.drawable.ic_heat;
+            case "Hornets": return R.drawable.ic_hornets;
+            case "Jazz": return R.drawable.ic_jazz;
+            case "Kings": return R.drawable.ic_kings;
+            case "Knicks": return R.drawable.ic_knicks;
+            case "Lakers": return R.drawable.ic_lakers;
+            case "Magic": return R.drawable.ic_magic;
+            case "Mavericks": return R.drawable.ic_maverick;
+            case "Nets": return R.drawable.ic_nets;
+            case "Nuggets": return R.drawable.ic_nuggets;
+            case "Pacers": return R.drawable.ic_pacers;
+            case "Pelicans": return R.drawable.ic_pelicans;
+            case "Pistons": return R.drawable.ic_pistons;
+            case "Raptors": return R.drawable.ic_raptors;
+            case "Rockets": return R.drawable.ic_rockets;
+            case "76ers": return R.drawable.ic_sixers;
+            case "Spurs": return R.drawable.ic_spurs;
+            case "Suns": return R.drawable.ic_suns;
+            case "Thunder": return R.drawable.ic_thunders;
+            case "Timberwolves": return R.drawable.ic_timberwolves;
+            case "Trail Blazers": return R.drawable.ic_trailblazers;
+            case "Warriors": return R.drawable.ic_warriors;
+            case "Wizards": return R.drawable.ic_wizards;
+            default: return 0;
+        }
     }
 }
