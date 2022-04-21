@@ -81,16 +81,8 @@ public class PlayerSearchFragment extends Fragment {
         }, new PlayerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Player player) {
-                Bundle bundle = new Bundle();
-                bundle.putString("first_name", player.getFirst_name());
-                bundle.putString("last_name", player.getLast_name());
-                bundle.putString("position", player.getPosition());
-                bundle.putInt("height_feet", player.getHeight_feet());
-                bundle.putInt("height_inches", player.getHeight_inches());
-                bundle.putInt("weight_pounds", player.getWeight_pounds());
-                bundle.putString("team_name", player.getTeam().getName());
-                sharedViewModel.getStatFromCurrentSeason(player);
-                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment, bundle);
+                sharedViewModel.getStatFromCurrentSeason(player);                
+                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment, player.getBundle());
             }
         });
         

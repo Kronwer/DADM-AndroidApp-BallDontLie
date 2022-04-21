@@ -1,8 +1,10 @@
 package com.example.dadmballdontlie.viewmodels;
 
 import android.app.Application;
+import android.os.Build;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -24,7 +26,9 @@ import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.data.api.NbaRetrofitInterface;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -109,6 +113,16 @@ public class SharedViewModel extends AndroidViewModel {
                 mediatorListPlayer.setValue(players);
             }
         });
+
+        /*retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.balldontlie.io/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        retrofitInterface = retrofit.create(NbaRetrofitInterface.class);
+
+        getAllTeams();
+        getAllPlayers();*/
 
     }
 
@@ -232,6 +246,19 @@ public class SharedViewModel extends AndroidViewModel {
         for (Team team: teams) {
             repository.addTeam(team);
         }
+    }
+
+    public List<Player> getPlayersFromTeam(int teamId) {
+
+        List<Player> res = new ArrayList<>();
+
+        for(Player player : listPlayerLocal.getValue()) {
+            if(player.getTeam().getId() == teamId) {
+                res.add(player);
+            }
+        }
+
+        return res;
     }
 
 }

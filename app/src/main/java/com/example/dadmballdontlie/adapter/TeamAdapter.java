@@ -24,10 +24,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
     private List<Team> listTeam;
     private HashMap<String, Drawable> imageTeam = new HashMap<>();
     private OnItemLongClickListener longClickListener;
+    private OnItemClickListener onItemClickListener;
 
-    public TeamAdapter(OnItemLongClickListener listener){
+    public TeamAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener){
         listTeam = new ArrayList<>();
         longClickListener = listener;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -106,12 +108,23 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
                     return false;
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(getTeam(getAdapterPosition()));
+                }
+            });
         }
 
     }
 
     public interface OnItemLongClickListener {
         void onItemLongClick(Team team);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Team team);
     }
 
     public Team getTeam(int position){

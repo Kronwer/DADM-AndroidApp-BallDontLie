@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_search_to_playerFragment"
             app:destination="@id/playerFragment" />
+        <action
+            android:id="@+id/action_navigation_search_to_teamFragment"
+            app:destination="@id/teamFragment" />
     </fragment>
 
     <fragment
@@ -37,4 +40,13 @@
         android:name="com.example.dadmballdontlie.ui.player.PlayerFragment"
         android:label="@string/title_player"
         tools:layout="@layout/fragment_player" />
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.example.dadmballdontlie.ui.team.TeamFragment"
+        android:label="@string/title_team"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_teamFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
 </navigation>

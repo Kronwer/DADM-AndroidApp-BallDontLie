@@ -5,6 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_about">About</string>
     <string name="title_player">Player Profile</string>
+    <string name="title_team">Team Profile</string>
     <string name="about_message">Balls Don\'t Lie by \n\n Francisco Arjona \n\n Alejandro Ávila \n\n Christian García \n\n Daniel García \n\n Carlos Ramirez \n\n Developed for DADM 2022</string>
 
     <string name="title_search">Search</string>
@@ -71,4 +72,8 @@
     <string name="positionF">Forward</string>
     <string name="positionG">Guard</string>
     
+
+    <!-- Team Profile -->
+    <string name="team_conference">Conference %1$s</string>
+    <string name="team_division">Division %1$s</string>
 </resources>

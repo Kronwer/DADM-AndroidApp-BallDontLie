@@ -47,4 +47,7 @@
     <string name="positionC">Pivot</string>
     <string name="positionF">Alero</string>
     <string name="positionG">Base</string>
+    <string name="title_team">Perfil de Equipo</string>
+    <string name="team_conference">Conferencia %1$s</string>
+    <string name="team_division">División %1$s</string>
 </resources>
