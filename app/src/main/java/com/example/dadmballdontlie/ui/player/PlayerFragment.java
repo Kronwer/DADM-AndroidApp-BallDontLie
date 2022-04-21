@@ -183,7 +183,7 @@ public class PlayerFragment extends Fragment {
     }
 
     private String getPlayerTeam() {
-        String team = getArguments().getString("team_name");
+        String team = getArguments().getBundle("team").getString("name");
         return team;
     }
 
