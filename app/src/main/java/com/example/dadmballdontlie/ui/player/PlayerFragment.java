@@ -46,8 +46,7 @@ public class PlayerFragment extends Fragment {
         binding.heightTextView.setText(getPlayerHeight() + "m");
         binding.weightTextView.setText(getPlayerWeight() + "kg");
         binding.teamTextView.setText(getPlayerTeam());
-        // Añadir icono del equipo
-        binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_warriors));
+        loadTeamImage(binding, getPlayerTeam());  // Añadir icono del equipo
 
 
         binding.textViewStatMin.setText("0");
@@ -211,6 +210,41 @@ public class PlayerFragment extends Fragment {
                 break;
         }
         return aux;
+    }
+
+    private void loadTeamImage(FragmentPlayerBinding binding,String team){
+        switch (team){
+            case "Bucks": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_bucks)); break;
+            case "Bulls": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_bulls)); break;
+            case "Cavaliers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_cavaliers)); break;
+            case "Celtics": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_celtics)); break;
+            case "Clippers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_clippers)); break;
+            case "Grizzlies": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_grizzlies)); break;
+            case "Hawks": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_hawks)); break;
+            case "Heat": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_heat)); break;
+            case "Hornets": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_hornets)); break;
+            case "Jazz": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_jazz)); break;
+            case "Kings": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_kings)); break;
+            case "Knicks": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_knicks)); break;
+            case "Lakers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_lakers)); break;
+            case "Magic": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_magic));  break;
+            case "Mavericks": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_maverick)); break;
+            case "Nets": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_nets)); break;
+            case "Nuggets": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_nuggets)); break;
+            case "Pacers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_pacers)); break;
+            case "Pelicans": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_pelicans)); break;
+            case "Pistons": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_pistons)); break;
+            case "Raptors": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_raptors)); break;
+            case "Rockets": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_rockets)); break;
+            case "76ers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_sixers)); break;
+            case "Spurs": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_spurs)); break;
+            case "Suns":  binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_suns)); break;
+            case "Thunder": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_thunders)); break;
+            case "Timberwolves": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_timberwolves)); break;
+            case "Trail Blazers": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_trailblazers)); break;
+            case "Warriors": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_warriors)); break;
+            case "Wizards": binding.imageViewPlayer.setImageDrawable(getResources().getDrawable(R.drawable.ic_wizards)); break;
+        }
     }
 
 
