@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +86,15 @@ public class PlayerFragment extends Fragment {
             public void onClick(View v) {
                 Glossary glossaryFragment = new Glossary();
                 glossaryFragment.show(requireActivity().getSupportFragmentManager(), getString(R.string.stat_glossary));
+            }
+
+        });
+
+        binding.imageViewPlayer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_playerFragment_to_teamFragment, getArguments().getBundle("team"));
             }
 
         });

@@ -33,7 +33,11 @@
         android:id="@+id/playerFragment"
         android:name="com.example.dadmballdontlie.ui.player.PlayerFragment"
         android:label="@string/title_player"
-        tools:layout="@layout/fragment_player" />
+        tools:layout="@layout/fragment_player" >
+        <action
+            android:id="@+id/action_playerFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
     <fragment
         android:id="@+id/teamFragment"
         android:name="com.example.dadmballdontlie.ui.team.TeamFragment"
