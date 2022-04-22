@@ -1,10 +1,12 @@
 package com.example.dadmballdontlie;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.dadmballdontlie.adapter.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.NavController;
@@ -41,4 +43,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
