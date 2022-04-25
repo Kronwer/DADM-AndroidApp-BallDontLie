@@ -1,9 +1,10 @@
 package com.example.dadmballdontlie.adapter;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.Stat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(listPlayers.get(position).getFirst_name() + " " + listPlayers.get(position).getLast_name());
-        holder.team.setText(listPlayers.get(position).getTeam().getFull_name());
+        holder.position.setText(getPositionFormatted(holder.position.getContext(),listPlayers.get(position).getPosition()));
+        holder.teamImageView.setImageResource(listPlayers.get(position).getTeam().getTeamLogo());
     }
 
     @Override
@@ -49,13 +50,15 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public TextView team;
+        public TextView position;
+        public ImageView teamImageView;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewPlayer);
-            team = itemView.findViewById(R.id.textViewPlayerTeam);
+            position = itemView.findViewById(R.id.textViewPosition);
+            teamImageView = itemView.findViewById(R.id.teamLogoImageView);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -91,5 +94,18 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public Player getPlayer(int position){
         return listPlayers.get(position);
+    }
+
+    public void updatePlayerPosition(Context context) {
+
+    }
+
+    private String getPositionFormatted(Context context, String position) {
+        switch(position) {
+            case "C": return context.getString(R.string.positionC);
+            case "F": return context.getString(R.string.positionF);
+            case "G": return context.getString(R.string.positionG);
+            default: return "";
+        }
     }
 }

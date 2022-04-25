@@ -15,8 +15,8 @@
     <string name="division_AT">Atlántico</string>
     <string name="division_PA">Pacífico</string>
     <string name="tabLayoutTeams">Equipos</string>
-    <string name="tabLayoutPlayers">Jugadores</string>
-    <string name="title_about">Sobree Nosotros</string>
+    <string name="tabLayoutPlayers">Plantilla</string>
+    <string name="title_about">Sobre Nosotros</string>
     <string name="title_search">Buscar</string>
     <string name="title_favs">Favoritos</string>
     <string name="title_profile">Perfil</string>
@@ -24,25 +24,25 @@
     <string name="search_error_message">Ha ocurrido un error, por favor intentelo otra vez</string>
     <string name="title_player">Perfil del Jugador</string>
     <string name="stat_error_message">no hay estadísticas de este jugador</string>
-    <string name="stat_ast_def">Asistencias</string>
-    <string name="stat_blk_def">Bloqueos</string>
-    <string name="stat_dreb_def">Rebotes Defensivos</string>
-    <string name="stat_fg3_pct_def">Porcentaje triples</string>
-    <string name="stat_fg3a_def">Triples intentados</string>
-    <string name="stat_fg3m_def">Triples anotados</string>
-    <string name="stat_fg_pct_def">Porcentaje tiros</string>
-    <string name="stat_fga_def">Tiros intentados</string>
-    <string name="stat_fgm_def">Tiros anotados</string>
-    <string name="stat_fta_def">Tiros libres intentados</string>
-    <string name="stat_ftm_def">Tiros libres anotados</string>
-    <string name="stat_min_def">Minutos</string>
-    <string name="stat_oreb_def">Rebotes Ofensivos</string>
-    <string name="stat_pf_def">Faltas personales</string>
-    <string name="stat_pts_def">Puntos</string>
-    <string name="stat_reb_def">Rebotes</string>
-    <string name="stat_stl_def">Robos</string>
-    <string name="stat_turnover_def">Pérdidas</string>
-    <string name="stat_ft_pct_def">Porcentaje tiros libres</string>
+    <string name="stat_ast_def">ast = Asistencias</string>
+    <string name="stat_blk_def">blk = Bloqueos</string>
+    <string name="stat_dreb_def">dreb = Rebotes Defensivos</string>
+    <string name="stat_fg3_pct_def">fg3_pct = Porcentaje triples</string>
+    <string name="stat_fg3a_def">fg3a = Triples intentados</string>
+    <string name="stat_fg3m_def">fg3m = Triples anotados</string>
+    <string name="stat_fg_pct_def">fg_pct= Porcentaje tiros</string>
+    <string name="stat_fga_def">fga = Tiros intentados</string>
+    <string name="stat_fgm_def">fgm = Tiros anotados</string>
+    <string name="stat_fta_def">fta = Tiros libres intentados</string>
+    <string name="stat_ftm_def">ftm = Tiros libres anotados</string>
+    <string name="stat_min_def">min = Minutos</string>
+    <string name="stat_oreb_def">oreb = Rebotes Ofensivos</string>
+    <string name="stat_pf_def">pf = Faltas personales</string>
+    <string name="stat_pts_def">pts = Puntos</string>
+    <string name="stat_reb_def">reb = Rebotes</string>
+    <string name="stat_stl_def">stl = Robos</string>
+    <string name="stat_turnover_def">tor = Pérdidas</string>
+    <string name="stat_ft_pct_def">ft_pct = Porcentaje tiros libres</string>
     <string name="stat_glossary">Glosario</string>
     <string name="positionC">Pivot</string>
     <string name="positionF">Alero</string>
@@ -50,4 +50,6 @@
     <string name="title_team">Perfil de Equipo</string>
     <string name="team_conference">Conferencia %1$s</string>
     <string name="team_division">División %1$s</string>
+    <string name="stat_season_stats">Estadísticas Temporada %1$s</string>
+    <string name="units">INT</string>
 </resources>

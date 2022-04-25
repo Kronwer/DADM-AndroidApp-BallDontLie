@@ -9,6 +9,8 @@ import androidx.room.Ignore;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.dadmballdontlie.R;
+
 @Entity(tableName = "player")
 public class Player {
     @PrimaryKey
