@@ -48,6 +48,8 @@ public class SharedViewModel extends AndroidViewModel {
     private NbaRepository repository;
     private ApiRepository apiRepository;
 
+    private String queryText = "";
+
     public LiveData<List<Team>> listTeamLocal;
 
     public LiveData<List<Player>> listPlayerLocal;
@@ -118,7 +120,7 @@ public class SharedViewModel extends AndroidViewModel {
         mediatorListPlayer.addSource(listPlayerLocal, new Observer<List<Player>>() {
             @Override
             public void onChanged(List<Player> players) {
-                mediatorListPlayer.setValue(players);
+                mediatorListPlayer.setValue(getPlayersFiltered(queryText));
             }
         });
 
@@ -144,29 +146,28 @@ public class SharedViewModel extends AndroidViewModel {
         listFavsTeams = repository.getAllFavsTeams();
     }
 
+    public void setQueryText(String query) { this.queryText = query; }
+
     public void getPlayersSearch(String search) {
         if (!search.equals("")) {
-            mediatorListPlayer.removeSource(listPlayerLocal);
-            mediatorListPlayer.removeSource(listPlayerSearch);
-            apiRepository.getSearchPlayer(apiRepositoryCallBack, search);
-
-            mediatorListPlayer.addSource(listPlayerSearch, new Observer<List<Player>>() {
-                @Override
-                public void onChanged(List<Player> players) {
-                    mediatorListPlayer.setValue(players);
-                }
-            });
+            mediatorListPlayer.setValue(getPlayersFiltered(search));
         } else {
-            mediatorListPlayer.removeSource(listPlayerSearch);
-            mediatorListPlayer.removeSource(listPlayerLocal);
-
-            mediatorListPlayer.addSource(listPlayerLocal, new Observer<List<Player>>() {
-                @Override
-                public void onChanged(List<Player> players) {
-                    mediatorListPlayer.setValue(players);
-                }
-            });
+            mediatorListPlayer.setValue(listPlayerLocal.getValue());
         }
+    }
+
+    private List<Player> getPlayersFiltered(String search) {
+
+        List<Player> res = new ArrayList<>();
+
+        for(Player player : listPlayerLocal.getValue()) {
+            if(player.getFullName().toLowerCase().contains(search.toLowerCase())) {
+                res.add(player);
+            }
+        }
+
+        return res;
+
     }
 
     public void getStatFromCurrentSeason(Player player){
@@ -250,7 +251,6 @@ public class SharedViewModel extends AndroidViewModel {
     public void removePlayerFromFavourites(Player player) {
         player.setFavourite(false);
         repository.updatePlayer(player);
-        listFavsPlayers = repository.getAllFavsPlayers();
     }
 
     public void removeTeamFromFavourites(Team team) {

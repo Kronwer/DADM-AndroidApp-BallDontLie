@@ -109,12 +109,14 @@ public class PlayerSearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 sharedViewModel.getPlayersSearch(s);
+                sharedViewModel.setQueryText(s);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
                 sharedViewModel.getPlayersSearch(s);
+                sharedViewModel.setQueryText(s);
                 return false;
             }
         });
@@ -123,20 +125,12 @@ public class PlayerSearchFragment extends Fragment {
             @Override
             public boolean onClose() {
                 sharedViewModel.getPlayersSearch("");
+                sharedViewModel.setQueryText("");
                 return false;
             }
         });
 
         sharedViewModel.mediatorListPlayer.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
-            @Override
-            public void onChanged(List<Player> players) {
-                if (players != null) {
-                    adapter.updateList(players);
-                }
-            }
-        });
-
-        sharedViewModel.listPlayerLocal.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
             @Override
             public void onChanged(List<Player> players) {
                 if (players != null) {
