@@ -73,6 +73,11 @@ public class TeamFragment extends Fragment {
             public void onItemClick(Player player) {
                 Navigation.findNavController(root).navigate(R.id.action_teamFragment_to_playerFragment, player.getBundle());
             }
+        }, new PlayerAdapter.OnFavClickListener() {
+            @Override
+            public void onFavClick(Player player) {
+                sharedViewModel.savePlayerToFavourites(player);
+            }
         });
 
         recyclerView.setAdapter(adapter);

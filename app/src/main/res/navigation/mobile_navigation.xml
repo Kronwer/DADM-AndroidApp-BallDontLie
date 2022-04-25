@@ -22,7 +22,14 @@
         android:id="@+id/navigation_favs"
         android:name="com.example.dadmballdontlie.ui.favs.FavsFragment"
         android:label="@string/title_favs"
-        tools:layout="@layout/fragment_favs" />
+        tools:layout="@layout/fragment_favs" >
+        <action
+            android:id="@+id/action_navigation_favs_to_playerFragment"
+            app:destination="@id/playerFragment" />
+        <action
+            android:id="@+id/action_navigation_favs_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_about"

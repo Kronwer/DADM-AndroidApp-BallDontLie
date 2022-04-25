@@ -23,19 +23,33 @@ public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
     }
 
     @Override
+    public void updatePlayer(Player player) {
+        new Thread(() -> nbaDAO.updatePlayer(player)).start();
+    }
+
+    @Override
+    public void updateTeam(Team team) {
+        new Thread(() -> nbaDAO.updateTeam(team)).start();
+    }
+
+
+    @Override
     public void addTeam(Team team) {
         new Thread(() -> nbaDAO.insertTeam(team)).start();
     }
+
 
     @Override
     public void removePlayer(Player player) {
         new Thread(() -> nbaDAO.deletePlayer(player)).start();
     }
 
+
     @Override
     public void removeTeam(Team team) {
         new Thread(() -> nbaDAO.deleteTeam(team)).start();
     }
+
 
     @Override
     public LiveData<List<Player>> getAllPlayers() {
@@ -45,6 +59,16 @@ public class NbaLocalDataSourceImpl implements NbaLocalDataSource {
     @Override
     public LiveData<List<Team>> getAllTeams() {
         return nbaDAO.getTeams();
+    }
+
+    @Override
+    public LiveData<List<Player>> getAllFavsPlayers() {
+        return nbaDAO.getAllFavsPlayers();
+    }
+
+    @Override
+    public LiveData<List<Team>> getAllFavsTeams() {
+        return nbaDAO.getAllFavsTeams();
     }
 
     @Override

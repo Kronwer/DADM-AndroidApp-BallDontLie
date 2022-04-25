@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,16 +17,19 @@ import com.example.dadmballdontlie.data.model.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder>{
+public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
 
     private List<Player> listPlayers;
     private OnItemLongClickListener longClickListener;
     private OnItemClickListener onItemClickListener;
+    private OnFavClickListener onItemClickListenerFavs;
 
-    public PlayerAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener){
+    public PlayerAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener,
+                         OnFavClickListener onItemClickListenerFavs){
         listPlayers = new ArrayList<>();
-        longClickListener = listener;
+        this.longClickListener = listener;
         this.onItemClickListener = onItemClickListener;
+        this.onItemClickListenerFavs = onItemClickListenerFavs;
     }
 
     @NonNull
@@ -39,9 +43,16 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(listPlayers.get(position).getFirst_name() + " " + listPlayers.get(position).getLast_name());
+
+        if (listPlayers.get(position).isFavourite()) {
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_filled);
+        } else {
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_empty);
+        }
         holder.position.setText(getPositionFormatted(holder.position.getContext(),listPlayers.get(position).getPosition()));
         holder.teamImageView.setImageResource(listPlayers.get(position).getTeam().getTeamLogo());
     }
+
 
     @Override
     public int getItemCount() {
@@ -50,6 +61,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
+        public ImageButton favouriteButton;
         public TextView position;
         public ImageView teamImageView;
 
@@ -57,6 +69,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewPlayer);
+            favouriteButton = itemView.findViewById(R.id.imageButtonFavPlayers);
             position = itemView.findViewById(R.id.textViewPosition);
             teamImageView = itemView.findViewById(R.id.teamLogoImageView);
 
@@ -74,6 +87,13 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
                     onItemClickListener.onItemClick(getPlayer(getAdapterPosition()));
                 }
             });
+
+            favouriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListenerFavs.onFavClick(getPlayer(getAdapterPosition()));
+                }
+            });
         }
 
     }
@@ -86,6 +106,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         void onItemClick(Player player);
     }
 
+    public interface OnFavClickListener {
+        void onFavClick(Player player);
+    }
+
     public void updateList(List<Player> players) {
         listPlayers.clear();
         listPlayers.addAll(players);
@@ -94,10 +118,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public Player getPlayer(int position){
         return listPlayers.get(position);
-    }
-
-    public void updatePlayerPosition(Context context) {
-
     }
 
     private String getPositionFormatted(Context context, String position) {

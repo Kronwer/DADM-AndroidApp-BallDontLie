@@ -61,7 +61,7 @@ public class TeamSearchFragment extends Fragment {
                     String teamName = team.getName();
                     teamName = URLEncoder.encode(teamName, "UTF-8");
                     teamName = teamName.toLowerCase();
-                    if(teamName.equals("76ers")){
+                    if (teamName.equals("76ers")) {
                         teamName = "sixers";
                     }
                     intent.setData(Uri.parse("https://es.global.nba.com/teams/#!/"
@@ -77,7 +77,17 @@ public class TeamSearchFragment extends Fragment {
             public void onItemClick(Team team) {
                 Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_teamFragment, team.getBundle());
             }
+        }, new TeamAdapter.OnFavClickListener() {
+            @Override
+            public void onFavClick(Team team) {
+                if(team.isFavourite()) {
+                    sharedViewModel.removeTeamFromFavourites(team);
+                } else {
+                    sharedViewModel.saveTeamToFavourites(team);
+                }
+            }
         });
+
         recyclerView.setAdapter(adapter);
 
         sharedViewModel.listTeamLocal.observe(getViewLifecycleOwner(), new Observer<List<Team>>() {

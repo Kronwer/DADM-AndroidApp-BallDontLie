@@ -5,12 +5,10 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
 import com.example.dadmballdontlie.data.model.Converters;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.Stat;
 import com.example.dadmballdontlie.data.model.Team;
 
 @Database(entities = {Player.class, Team.class}, version = 1)

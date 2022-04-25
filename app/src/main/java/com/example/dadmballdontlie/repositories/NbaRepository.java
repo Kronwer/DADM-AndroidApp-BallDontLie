@@ -11,6 +11,10 @@ public interface NbaRepository {
 
     void addPlayer(Player player);
 
+    void updatePlayer(Player player);
+
+    void updateTeam(Team team);
+
     void addTeam(Team team);
 
     void removePlayer(Player player);
@@ -20,6 +24,10 @@ public interface NbaRepository {
     LiveData<List<Player>> getAllPlayers();
 
     LiveData<List<Team>> getAllTeams();
+
+    LiveData<List<Player>> getAllFavsPlayers();
+
+    LiveData<List<Team>> getAllFavsTeams();
 
     void removePlayers();
 

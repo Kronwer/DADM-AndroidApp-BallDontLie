@@ -80,6 +80,10 @@
     <string name="weight_unit_eng" translatable="false">"%1$s lbs"</string>
     <string name="height_unit_int" translatable="false">%1$s m</string>
     <string name="weight_unit_int" translatable="false">"%1$s kg"</string>
+
+    <string name="player_deleted">Player %1$s %2$s has been deleted from your favourites</string>
+    <string name="team_deleted">Team %1$s has been deleted from your favourites</string>
+    <string name="undo_action">Undo</string>
     
 
     <!-- Team Profile -->
