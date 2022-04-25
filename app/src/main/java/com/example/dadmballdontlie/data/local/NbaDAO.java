@@ -18,8 +18,14 @@ public abstract class NbaDAO {
     @Insert
     public abstract void insertPlayer(Player player);
 
+    @Update
+    public abstract void updatePlayer(Player player);
+
     @Insert
     public abstract void insertTeam(Team team);
+
+    @Update
+    public abstract void updateTeam(Team team);
 
     @Delete
     public abstract void deletePlayer(Player player);
@@ -27,11 +33,18 @@ public abstract class NbaDAO {
     @Delete
     public abstract void deleteTeam(Team team);
 
+
     @Query("select * from player")
     public abstract LiveData<List<Player>> getPlayers();
 
     @Query("select * from team")
     public abstract LiveData<List<Team>> getTeams();
+
+    @Query("select * from player where favourite = 1")
+    public abstract LiveData<List<Player>> getAllFavsPlayers();
+
+    @Query("select * from team where favourite = 1")
+    public abstract LiveData<List<Team>> getAllFavsTeams();
 
     @Query("delete from player")
     public abstract void deletePlayers();

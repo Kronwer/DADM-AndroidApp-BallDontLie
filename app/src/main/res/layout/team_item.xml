@@ -32,12 +32,13 @@
             android:id="@+id/textViewTeamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/red_nba"
             android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButtonFavTeams"
+            app:layout_constraintEnd_toStartOf="@id/imageButtonFavTeams"
+            app:layout_constraintTop_toTopOf="@+id/imageButtonFavTeams"
             tools:text="Team Name" />
 
         <ImageView
@@ -47,6 +48,17 @@
             android:src="@drawable/ic_warriors"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonFavTeams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="@color/white"
+            android:src="@drawable/ic_bx_heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

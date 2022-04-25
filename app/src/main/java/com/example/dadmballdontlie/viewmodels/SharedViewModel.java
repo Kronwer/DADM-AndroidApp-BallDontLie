@@ -1,6 +1,10 @@
 package com.example.dadmballdontlie.viewmodels;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
+
 import android.os.Build;
 import android.widget.Toast;
 
@@ -11,7 +15,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.Transformations;
 
 import com.example.dadmballdontlie.data.model.Data;
 import com.example.dadmballdontlie.data.model.Player;
@@ -38,7 +41,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SharedViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<String> mText;
     private Retrofit retrofit;
     private NbaRetrofitInterface retrofitInterface;
 
@@ -52,6 +54,9 @@ public class SharedViewModel extends AndroidViewModel {
     public LiveData<List<Player>> listPlayerLocal;
     public MutableLiveData<List<Player>> listPlayerSearch;
     public MediatorLiveData<List<Player>> mediatorListPlayer;
+
+    public LiveData<List<Player>> listFavsPlayers;
+    public LiveData<List<Team>> listFavsTeams;
 
     public MutableLiveData<Stat> stat;
 
@@ -93,9 +98,6 @@ public class SharedViewModel extends AndroidViewModel {
 
         super(application);
 
-        mText = new MutableLiveData<>();
-        mText.setValue("This text comes from SharedViewModel");
-
         stat = new MutableLiveData<>();
 
         mediatorListPlayer = new MediatorLiveData<>();
@@ -104,6 +106,13 @@ public class SharedViewModel extends AndroidViewModel {
 
         repository = new NbaRepositoryImpl(application);
         apiRepository = new ApiRepositoryImpl();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
+
+        if (sharedPreferences.getBoolean("start", true)) {
+            loadPlayersAndTeams();
+            sharedPreferences.edit().putBoolean("start", false).apply();
+        }
 
         initLiveData();
 
@@ -114,22 +123,26 @@ public class SharedViewModel extends AndroidViewModel {
             }
         });
 
-        /*retrofit = new Retrofit.Builder()
+    }
+
+    private void loadPlayersAndTeams() {
+        retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.balldontlie.io/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         retrofitInterface = retrofit.create(NbaRetrofitInterface.class);
 
+        getAllPlayers();
         getAllTeams();
-        getAllPlayers();*/
-
     }
 
     private void initLiveData() {
         listTeamLocal = repository.getAllTeams();
         listPlayerLocal = repository.getAllPlayers();
         stat.setValue(new Stat());
+        listFavsPlayers = repository.getAllFavsPlayers();
+        listFavsTeams = repository.getAllFavsTeams();
     }
 
     public void getPlayersSearch(String search) {
@@ -167,6 +180,7 @@ public class SharedViewModel extends AndroidViewModel {
     }
 
     public void getPlayerStatFromCurrentSeason(Player player) {
+        //retrofitInterface = new ;
 
         Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(player.getId());
 
@@ -248,6 +262,26 @@ public class SharedViewModel extends AndroidViewModel {
         }
     }
 
+    public void savePlayerToFavourites(Player player) {
+        player.setFavourite(true);
+        repository.updatePlayer(player);
+    }
+
+    public void saveTeamToFavourites(Team team) {
+        team.setFavourite(true);
+        repository.updateTeam(team);
+    }
+
+    public void removePlayerFromFavourites(Player player) {
+        player.setFavourite(false);
+        repository.updatePlayer(player);
+    }
+
+    public void removeTeamFromFavourites(Team team) {
+        team.setFavourite(false);
+        repository.updateTeam(team);
+    }
+
     public List<Player> getPlayersFromTeam(int teamId) {
 
         List<Player> res = new ArrayList<>();
@@ -260,5 +294,5 @@ public class SharedViewModel extends AndroidViewModel {
 
         return res;
     }
-
+  
 }
