@@ -41,7 +41,7 @@
             android:textColor="@color/red_nba"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButtonRemovePlayers"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonFavPlayers"
             tools:text="Player Position" />
 
         <ImageView
@@ -54,15 +54,15 @@
             tools:src="@drawable/ic_wizards"/>
 
         <ImageButton
-            android:id="@+id/imageButtonRemovePlayers"
+            android:id="@+id/imageButtonFavPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="center"
             android:background="@color/white"
-            android:src="@drawable/ic_bx_heart"
             app:layout_constraintBottom_toBottomOf="@+id/textViewPosition"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textViewPosition" />
+            app:layout_constraintTop_toTopOf="@+id/textViewPosition"
+            tools:src="@drawable/ic_heart_empty"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

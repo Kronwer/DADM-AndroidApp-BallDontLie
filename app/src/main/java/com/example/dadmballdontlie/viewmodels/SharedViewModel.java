@@ -3,6 +3,7 @@ package com.example.dadmballdontlie.viewmodels;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import android.os.Build;
@@ -48,8 +49,6 @@ public class SharedViewModel extends AndroidViewModel {
     private ApiRepository apiRepository;
 
     public LiveData<List<Team>> listTeamLocal;
-    public MutableLiveData<List<Team>> listTeamSearch;
-    public MediatorLiveData<List<Team>> mediatorListTeam;
 
     public LiveData<List<Player>> listPlayerLocal;
     public MutableLiveData<List<Player>> listPlayerSearch;
@@ -70,7 +69,7 @@ public class SharedViewModel extends AndroidViewModel {
 
         @Override
         public void onFailedAllPlayers() {
-            mText.setValue("Cannot received players");
+            Log.e("FAILURE: ", "COULDN'T LOAD PLAYERS");
         }
 
         @Override
@@ -170,32 +169,8 @@ public class SharedViewModel extends AndroidViewModel {
         }
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
-
-
     public void getStatFromCurrentSeason(Player player){
         apiRepository.getStatFromCurrentSeason(apiRepositoryCallBack, player);
-    }
-
-    public void getPlayerStatFromCurrentSeason(Player player) {
-        //retrofitInterface = new ;
-
-        Call<Data> call = retrofitInterface.getPlayerStatFromCurrentSeason(player.getId());
-
-        call.enqueue(new Callback<Data>() {
-            @Override
-            public void onResponse(Call<Data> call, Response<Data> response) {
-                mText.setValue(response.body().getFirstStat().getMinutes());
-            }
-
-            @Override
-            public void onFailure(Call<Data> call, Throwable t) {
-                mText.setValue("Error while retrieving stats from a player");
-                Toast.makeText(getApplication().getApplicationContext(), "Error while retrieving stats from a player", Toast.LENGTH_SHORT);
-            }
-        });
     }
 
     public void getAllPlayers() {
@@ -244,7 +219,7 @@ public class SharedViewModel extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<PlayersResponse> call, Throwable t) {
-                    mText.setValue("Error while retrieving player");
+                    Log.e("FAILURE", "Couldn't load players");
                 }
             });
         }
@@ -275,6 +250,7 @@ public class SharedViewModel extends AndroidViewModel {
     public void removePlayerFromFavourites(Player player) {
         player.setFavourite(false);
         repository.updatePlayer(player);
+        listFavsPlayers = repository.getAllFavsPlayers();
     }
 
     public void removeTeamFromFavourites(Team team) {

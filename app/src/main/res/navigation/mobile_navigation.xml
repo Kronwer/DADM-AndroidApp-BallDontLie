@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_favs_to_playerFragment"
             app:destination="@id/playerFragment" />
+        <action
+            android:id="@+id/action_navigation_favs_to_teamFragment"
+            app:destination="@id/teamFragment" />
     </fragment>
 
     <fragment

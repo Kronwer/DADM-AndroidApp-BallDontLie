@@ -56,7 +56,7 @@
             android:layout_marginBottom="20dp"
             android:layout_gravity="end|center_vertical"
             android:background="@color/white"
-            android:src="@drawable/ic_bx_heart"
+            android:src="@drawable/ic_bx_trash"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

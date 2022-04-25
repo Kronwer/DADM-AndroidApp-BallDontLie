@@ -90,7 +90,11 @@ public class PlayerSearchFragment extends Fragment {
         }, new PlayerAdapter.OnFavClickListener() {
             @Override
             public void onFavClick(Player player) {
-                sharedViewModel.savePlayerToFavourites(player);
+                if(player.isFavourite()) {
+                    sharedViewModel.removePlayerFromFavourites(player);
+                } else {
+                    sharedViewModel.savePlayerToFavourites(player);
+                }
             }
         });
 

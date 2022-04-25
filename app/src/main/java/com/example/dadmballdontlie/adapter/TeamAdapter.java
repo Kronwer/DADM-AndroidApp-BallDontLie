@@ -1,7 +1,5 @@
 package com.example.dadmballdontlie.adapter;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dadmballdontlie.R;
-import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.data.model.Team;
 
 import java.util.ArrayList;
@@ -39,7 +36,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_item_fav,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_item,parent,false);
         TeamAdapter.ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -50,12 +47,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
         holder.name.setText(listTeam.get(position).getName());
 
         if (listTeam.get(position).isFavourite()) {
-            holder.imageButton.setVisibility(View.INVISIBLE);
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_filled);
         } else {
-            holder.imageButton.setVisibility(View.VISIBLE);
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_empty);
         }
 
-        holder.imageView.setImageResource(listTeam.get(position).getTeamLogo());
+        holder.teamImageView.setImageResource(listTeam.get(position).getTeamLogo());
     }
 
     @Override
@@ -66,16 +63,16 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView fullName;
         public TextView name;
-        public ImageView imageView;
-        public ImageButton imageButton;
+        public ImageView teamImageView;
+        public ImageButton favouriteButton;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             fullName = itemView.findViewById(R.id.textViewTeamFullName);
             name = itemView.findViewById(R.id.textViewTeamName);
-            imageView = itemView.findViewById(R.id.imageViewTeam);
-            imageButton = itemView.findViewById(R.id.imageButtonFavTeams);
+            teamImageView = itemView.findViewById(R.id.imageViewTeam);
+            favouriteButton = itemView.findViewById(R.id.imageButtonFavTeams);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -85,7 +82,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
                 }
             });
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            favouriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onItemClickListenerFavs.onFavClick(getTeam(getAdapterPosition()));
@@ -105,7 +102,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
     public interface OnItemLongClickListener {
         void onItemLongClick(Team team);
     }
-
 
     public interface OnFavClickListener {
         void onFavClick(Team team);

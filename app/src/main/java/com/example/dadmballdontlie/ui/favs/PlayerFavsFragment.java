@@ -19,10 +19,8 @@ import android.widget.Toast;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.adapter.PlayerAdapter;
-import com.example.dadmballdontlie.adapter.PlayerFavsAdapter;
 import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.databinding.FragmentPlayerFavsBinding;
-import com.example.dadmballdontlie.databinding.FragmentPlayerSearchBinding;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 
@@ -33,7 +31,7 @@ public class PlayerFavsFragment extends Fragment {
 
     private FragmentPlayerFavsBinding binding;
     private SharedViewModel sharedViewModel;
-    private PlayerFavsAdapter adapter;
+    private PlayerAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +52,7 @@ public class PlayerFavsFragment extends Fragment {
         //Add a separation line between items
         //recyclerView.addItemDecoration(itemDecoration);
 
-        adapter = new PlayerFavsAdapter(new PlayerFavsAdapter.OnItemLongClickListener() {
+        adapter = new PlayerAdapter(new PlayerAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(Player player) {
                 try {
@@ -70,24 +68,20 @@ public class PlayerFavsFragment extends Fragment {
                             R.string.search_error_message, Toast.LENGTH_SHORT).show();
                 }
             }
-        }, new PlayerFavsAdapter.OnItemClickListener() {
+        }, new PlayerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Player player) {
-                Bundle bundle = new Bundle();
-                bundle.putString("first_name", player.getFirst_name());
-                bundle.putString("last_name", player.getLast_name());
-                bundle.putString("position", player.getPosition());
-                bundle.putInt("height_feet", player.getHeight_feet());
-                bundle.putInt("height_inches", player.getHeight_inches());
-                bundle.putInt("weight_pounds", player.getWeight_pounds());
-                bundle.putString("team_name", player.getTeam().getName());
                 sharedViewModel.getStatFromCurrentSeason(player);
-                Navigation.findNavController(root).navigate(R.id.action_navigation_favs_to_playerFragment, bundle);
+                Navigation.findNavController(root).navigate(R.id.action_navigation_favs_to_playerFragment, player.getBundle());
             }
-        }, new PlayerFavsAdapter.OnRemoveFavClickListener() {
+        }, new PlayerAdapter.OnFavClickListener() {
             @Override
-            public void onRemoveClick(Player player) {
-                sharedViewModel.removePlayerFromFavourites(player);
+            public void onFavClick(Player player) {
+                if(player.isFavourite()) {
+                    sharedViewModel.removePlayerFromFavourites(player);
+                } else {
+                    sharedViewModel.savePlayerToFavourites(player);
+                }
             }
         });
 

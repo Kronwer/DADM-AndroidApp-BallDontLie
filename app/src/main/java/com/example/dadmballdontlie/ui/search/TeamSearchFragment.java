@@ -80,7 +80,11 @@ public class TeamSearchFragment extends Fragment {
         }, new TeamAdapter.OnFavClickListener() {
             @Override
             public void onFavClick(Team team) {
-                sharedViewModel.saveTeamToFavourites(team);
+                if(team.isFavourite()) {
+                    sharedViewModel.removeTeamFromFavourites(team);
+                } else {
+                    sharedViewModel.saveTeamToFavourites(team);
+                }
             }
         });
 

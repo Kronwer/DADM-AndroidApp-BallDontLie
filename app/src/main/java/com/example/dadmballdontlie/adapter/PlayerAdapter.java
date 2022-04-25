@@ -9,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.data.model.Player;
-import com.example.dadmballdontlie.data.model.Stat;
-import com.example.dadmballdontlie.repositories.NbaRepository;
-import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +23,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     private OnItemLongClickListener longClickListener;
     private OnItemClickListener onItemClickListener;
     private OnFavClickListener onItemClickListenerFavs;
-    private LiveData<List<Player>> listFavsPlayers;
 
     public PlayerAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener,
                          OnFavClickListener onItemClickListenerFavs){
@@ -40,7 +35,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @NonNull
     @Override
     public PlayerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_item_fav,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_item,parent,false);
         PlayerAdapter.ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -50,9 +45,9 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         holder.name.setText(listPlayers.get(position).getFirst_name() + " " + listPlayers.get(position).getLast_name());
 
         if (listPlayers.get(position).isFavourite()) {
-            holder.imageButton.setVisibility(View.INVISIBLE);
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_filled);
         } else {
-            holder.imageButton.setVisibility(View.VISIBLE);
+            holder.favouriteButton.setImageResource(R.drawable.ic_heart_empty);
         }
         holder.position.setText(getPositionFormatted(holder.position.getContext(),listPlayers.get(position).getPosition()));
         holder.teamImageView.setImageResource(listPlayers.get(position).getTeam().getTeamLogo());
@@ -66,7 +61,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public ImageButton imageButton;
+        public ImageButton favouriteButton;
         public TextView position;
         public ImageView teamImageView;
 
@@ -74,7 +69,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewPlayer);
-            imageButton = itemView.findViewById(R.id.imageButtonFavPlayers);
+            favouriteButton = itemView.findViewById(R.id.imageButtonFavPlayers);
             position = itemView.findViewById(R.id.textViewPosition);
             teamImageView = itemView.findViewById(R.id.teamLogoImageView);
 
@@ -93,7 +88,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
                 }
             });
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            favouriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onItemClickListenerFavs.onFavClick(getPlayer(getAdapterPosition()));

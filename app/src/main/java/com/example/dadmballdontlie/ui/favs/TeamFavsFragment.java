@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,10 +19,8 @@ import android.widget.Toast;
 
 import com.example.dadmballdontlie.R;
 import com.example.dadmballdontlie.adapter.TeamAdapter;
-import com.example.dadmballdontlie.adapter.TeamFavsAdapter;
 import com.example.dadmballdontlie.data.model.Team;
 import com.example.dadmballdontlie.databinding.FragmentTeamFavsBinding;
-import com.example.dadmballdontlie.databinding.FragmentTeamSearchBinding;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 
@@ -32,7 +31,7 @@ public class TeamFavsFragment extends Fragment {
 
     private FragmentTeamFavsBinding binding;
     private SharedViewModel sharedViewModel;
-    private TeamFavsAdapter adapter;
+    private TeamAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +49,7 @@ public class TeamFavsFragment extends Fragment {
 
         recyclerView.setLayoutManager(manager);
 
-        adapter = new TeamFavsAdapter(new TeamFavsAdapter.OnItemLongClickListener() {
+        adapter = new TeamAdapter(new TeamAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(Team team) {
                 try {
@@ -70,10 +69,19 @@ public class TeamFavsFragment extends Fragment {
                             R.string.search_error_message, Toast.LENGTH_SHORT).show();
                 }
             }
-        }, new TeamFavsAdapter.OnRemoveFavClickListener() {
+        }, new TeamAdapter.OnItemClickListener() {
             @Override
-            public void onRemoveClick(Team team) {
-                sharedViewModel.removeTeamFromFavourites(team);
+            public void onItemClick(Team team) {
+                Navigation.findNavController(root).navigate(R.id.action_navigation_favs_to_teamFragment, team.getBundle());
+            }
+        }, new TeamAdapter.OnFavClickListener() {
+            @Override
+            public void onFavClick(Team team) {
+                if(team.isFavourite()) {
+                    sharedViewModel.removeTeamFromFavourites(team);
+                } else {
+                    sharedViewModel.saveTeamToFavourites(team);
+                }
             }
         });
 
@@ -84,7 +92,6 @@ public class TeamFavsFragment extends Fragment {
             public void onChanged(List<Team> teams) {
                 if (teams != null) {
                     adapter.updateList(teams);
-                    adapter.loadTeamImages(getContext());
                 }
             }
         });
