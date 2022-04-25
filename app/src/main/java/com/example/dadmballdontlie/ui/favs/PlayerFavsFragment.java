@@ -23,6 +23,7 @@ import com.example.dadmballdontlie.data.model.Player;
 import com.example.dadmballdontlie.databinding.FragmentPlayerFavsBinding;
 import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.net.URLEncoder;
 import java.util.List;
@@ -79,6 +80,14 @@ public class PlayerFavsFragment extends Fragment {
             public void onFavClick(Player player) {
                 if(player.isFavourite()) {
                     sharedViewModel.removePlayerFromFavourites(player);
+                    Snackbar snackbar = Snackbar.make(binding.playerCoordinatorLayout, getString(R.string.player_deleted, player.getFirst_name(), player.getLast_name()), Snackbar.LENGTH_LONG);
+                    snackbar.setAction(R.string.undo_action, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            sharedViewModel.savePlayerToFavourites(player);
+                        }
+                    });
+                    snackbar.show();
                 } else {
                     sharedViewModel.savePlayerToFavourites(player);
                 }
@@ -104,4 +113,5 @@ public class PlayerFavsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

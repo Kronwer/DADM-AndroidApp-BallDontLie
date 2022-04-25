@@ -52,4 +52,7 @@
     <string name="team_division">División %1$s</string>
     <string name="stat_season_stats">Estadísticas Temporada %1$s</string>
     <string name="units">INT</string>
+    <string name="player_deleted">El jugador %1$s %2$s ha sido eliminado de tus favoritos</string>
+    <string name="team_deleted">El equipo %1$s ha sido eliminado de tus favoritos</string>
+    <string name="undo_action">Deshacer</string>
 </resources>
