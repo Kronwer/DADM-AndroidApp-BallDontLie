@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.example.dadmballdontlie.viewmodels.SharedViewModel;
 import com.example.dadmballdontlie.viewmodels.SharedViewModelFactory;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 public class TeamFragment extends Fragment {
 
@@ -71,12 +73,19 @@ public class TeamFragment extends Fragment {
         }, new PlayerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Player player) {
+                sharedViewModel.getStatFromCurrentSeason(player);
                 Navigation.findNavController(root).navigate(R.id.action_teamFragment_to_playerFragment, player.getBundle());
             }
         }, new PlayerAdapter.OnFavClickListener() {
             @Override
             public void onFavClick(Player player) {
-                sharedViewModel.savePlayerToFavourites(player);
+                if(player.isFavourite()) {
+                    sharedViewModel.removePlayerFromFavourites(player);
+                    adapter.updateList(sharedViewModel.getPlayersFromTeam(getTeamId()));
+                } else {
+                    sharedViewModel.savePlayerToFavourites(player);
+                    adapter.updateList(sharedViewModel.getPlayersFromTeam(getTeamId()));
+                }
             }
         });
 
