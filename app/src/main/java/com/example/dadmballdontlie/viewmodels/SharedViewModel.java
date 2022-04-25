@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import android.os.Build;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -24,7 +29,9 @@ import com.example.dadmballdontlie.repositories.NbaRepository;
 import com.example.dadmballdontlie.repositories.NbaRepositoryImpl;
 import com.example.dadmballdontlie.data.api.NbaRetrofitInterface;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +41,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SharedViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<String> mText;
     private Retrofit retrofit;
     private NbaRetrofitInterface retrofitInterface;
 
@@ -91,9 +97,6 @@ public class SharedViewModel extends AndroidViewModel {
     public SharedViewModel(Application application) {
 
         super(application);
-
-        mText = new MutableLiveData<>();
-        mText.setValue("This text comes from SharedViewModel");
 
         stat = new MutableLiveData<>();
 
@@ -279,7 +282,17 @@ public class SharedViewModel extends AndroidViewModel {
         repository.updateTeam(team);
     }
 
-    public LiveData<List<Player>> getAllFavsPlayers() {
-        return listFavsPlayers;
+    public List<Player> getPlayersFromTeam(int teamId) {
+
+        List<Player> res = new ArrayList<>();
+
+        for(Player player : listPlayerLocal.getValue()) {
+            if(player.getTeam().getId() == teamId) {
+                res.add(player);
+            }
+        }
+
+        return res;
     }
+  
 }

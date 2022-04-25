@@ -1,11 +1,15 @@
 package com.example.dadmballdontlie.data.model;
 
+import android.os.Bundle;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.example.dadmballdontlie.R;
 
 @Entity(tableName = "player")
 public class Player {
@@ -133,5 +137,18 @@ public class Player {
 
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
+    }
+  
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        bundle.putString("first_name", first_name);
+        bundle.putString("last_name", last_name);
+        bundle.putString("position", position);
+        bundle.putInt("height_feet", height_feet);
+        bundle.putInt("height_inches", height_inches);
+        bundle.putInt("weight_pounds", weight_pounds);
+        bundle.putBundle("team", team.getBundle());
+        return bundle;
     }
 }

@@ -4,437 +4,462 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="16dp"
         tools:context=".ui.player.PlayerFragment">
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/positionTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/blue_nba"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="I'm nameTextView"/>
+            app:layout_constraintEnd_toStartOf="@+id/imageViewPlayer"
+            tools:text="Player Name" />
+
+        <ImageView
+            android:id="@+id/personIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="-3dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
         <TextView
             android:id="@+id/positionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/heightTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-            tools:text="I'm positionTextView"/>
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/red_nba"
+            app:layout_constraintStart_toEndOf="@+id/personIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/personIcon"
+            app:layout_constraintTop_toTopOf="@+id/personIcon"
+            tools:text="Player Position" />
+
+        <ImageView
+            android:id="@+id/heightIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_height"
+            app:layout_constraintStart_toStartOf="@+id/personIcon"
+            app:layout_constraintTop_toBottomOf="@+id/positionTextView" />
 
         <TextView
             android:id="@+id/heightTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/weightTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/red_nba"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toEndOf="@+id/heightIcon"
             app:layout_constraintTop_toBottomOf="@+id/positionTextView"
-            tools:text="I'm heightTextView"/>
+            tools:text="Player Height" />
+
+        <ImageView
+            android:id="@+id/weightIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_height"
+            android:rotation="90"
+            app:layout_constraintStart_toEndOf="@+id/heightTextView"
+            app:layout_constraintTop_toBottomOf="@+id/positionTextView" />
 
         <TextView
             android:id="@+id/weightTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/heightTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/teamTextView"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="I'm weightTextView" />
+            android:layout_marginStart="5dp"
+            android:textColor="@color/red_nba"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toEndOf="@+id/weightIcon"
+            app:layout_constraintTop_toBottomOf="@+id/positionTextView"
+            tools:text="Player Weight" />
 
-        <TextView
-            android:id="@+id/teamTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageViewPlayer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="-10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weightTextView"
-            tools:text="I'm teamTextView" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_wizards"/>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutStat"
-            app:layout_constraintTop_toBottomOf="@+id/teamTextView" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutStat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_height="2dp"
+            android:layout_marginVertical="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teamTextView"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPlayer"/>
 
-            <Button
-                android:id="@+id/buttonVisibility1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/stat_glossary"
-                app:layout_constraintBottom_toTopOf="@+id/tableLayoutStat2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayoutStat" />
+        <TextView
+            android:id="@+id/seasonTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/stat_season_stats"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
 
-            <TextView
-                android:id="@+id/textViewGlossary1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/tableLayoutStat2"
-                app:layout_constraintEnd_toStartOf="@+id/buttonVisibility1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayoutStat" />
 
-            <TableLayout
-                android:id="@+id/tableLayoutStat"
-                android:layout_width="match_parent"
+        <TableLayout
+            android:id="@+id/tableLayoutStat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:stretchColumns="*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seasonTextView">
+
+            <!-- First Row Titles -->
+            <TableRow
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:background="@color/blue_nba"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_min"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_pts"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_ast"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_stl"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_turnover"
+                    android:textColor="@color/white"/>
+
+            </TableRow>
+
+            <!-- First Row Values -->
+            <TableRow
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:shrinkColumns="*"
-                android:stretchColumns="*"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:paddingVertical="10dp">
 
-                <TableRow
+                <TextView
+                    android:id="@+id/textViewStatMin"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_principal"
-                    android:gravity="fill_horizontal|center_vertical">
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_min" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_pts" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_ast" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_stl" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_turnover" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_blk" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_reb" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_oreb" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_dreb" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_pf" />
-                </TableRow>
-
-                <TableRow
+                <TextView
+                    android:id="@+id/textViewStatPts"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="fill_horizontal|center_vertical">
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatMin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatPts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatAst"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatStl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatTurnover"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatBlk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatReb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatOReb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatDReb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-
-                    <TextView
-                        android:id="@+id/textViewStatPf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
-                android:id="@+id/tableLayoutStat2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:shrinkColumns="*"
-                android:stretchColumns="*"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TableRow
+                <TextView
+                    android:id="@+id/textViewStatAst"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_principal"
-                    android:gravity="fill_horizontal|center_vertical">
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fga" />
+                <TextView
+                    android:id="@+id/textViewStatStl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fgm" />
+                <TextView
+                    android:id="@+id/textViewStatTurnover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fg_pct" />
+            </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fg3a" />
+            <!-- Second Row Titles -->
+            <TableRow
+                android:background="@color/blue_nba"
+                android:paddingVertical="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fg3m" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_blk"
+                    android:textColor="@color/white"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fg3_pct" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_reb"
+                    android:textColor="@color/white"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_fta" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_oreb"
+                    android:textColor="@color/white"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_ftm" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_dreb"
+                    android:textColor="@color/white"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp"
-                        android:text="@string/stat_ft_pct" />
-                </TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_pf"
+                    android:textColor="@color/white"/>
 
-                <TableRow>
 
-                    <TextView
-                        android:id="@+id/textViewStatFga"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
 
-                    <TextView
-                        android:id="@+id/textViewStatFgm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+            </TableRow>
 
-                    <TextView
-                        android:id="@+id/textViewStatFgpct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+            <!-- Second Row Values -->
+            <TableRow
+                android:paddingVertical="10dp">
 
-                    <TextView
-                        android:id="@+id/textViewStatFg3a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textViewStatBlk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatFg3m"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textViewStatReb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatFg3pct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textViewStatOReb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatFta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textViewStatDReb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatFtm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textViewStatPf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
 
-                    <TextView
-                        android:id="@+id/textViewStatFtpct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="fill_horizontal|center_vertical"
-                        android:padding="8sp" />
-                </TableRow>
-            </TableLayout>
+            </TableRow>
 
-            <Button
-                android:id="@+id/buttonVisibility2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/stat_glossary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayoutStat2" />
+            <!-- Third Row Titles -->
+            <TableRow
+                android:background="@color/blue_nba"
+                android:paddingVertical="10dp">
 
-            <TextView
-                android:id="@+id/textViewGlossary2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/buttonVisibility2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayoutStat2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fga"
+                    android:textColor="@color/white"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fgm"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fg_pct"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fg3a"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fg3m"
+                    android:textColor="@color/white"/>
+
+            </TableRow>
+
+            <!-- Third Row Values -->
+            <TableRow
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:id="@+id/textViewStatFga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFgm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFgpct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFg3a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFg3m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+            </TableRow>
+
+            <!-- Fourth Row Titles -->
+            <TableRow
+                android:background="@color/blue_nba"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fg3_pct"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_fta"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_ftm"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_ft_pct"
+                    android:textColor="@color/white"/>
+
+            </TableRow>
+
+            <!-- Fourth Row Values -->
+            <TableRow
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:id="@+id/textViewStatFg3pct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFtm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+                <TextView
+                    android:id="@+id/textViewStatFtpct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/stat_default_value"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/glossaryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/red_nba"
+            android:text="@string/stat_glossary"
+            app:layout_constraintStart_toStartOf="@+id/tableLayoutStat"
+            app:layout_constraintEnd_toEndOf="@+id/tableLayoutStat"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayoutStat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +72,11 @@ public class TeamSearchFragment extends Fragment {
                             R.string.search_error_message, Toast.LENGTH_SHORT).show();
                 }
             }
+        }, new TeamAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Team team) {
+                Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_teamFragment, team.getBundle());
+            }
         }, new TeamAdapter.OnFavClickListener() {
             @Override
             public void onFavClick(Team team) {
@@ -85,7 +91,6 @@ public class TeamSearchFragment extends Fragment {
             public void onChanged(List<Team> teams) {
                 if (teams != null) {
                     adapter.updateList(teams);
-                    adapter.loadTeamImages(getContext());
                 }
             }
         });

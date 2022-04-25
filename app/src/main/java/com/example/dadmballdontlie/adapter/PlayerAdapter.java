@@ -1,10 +1,11 @@
 package com.example.dadmballdontlie.adapter;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,13 +48,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(listPlayers.get(position).getFirst_name() + " " + listPlayers.get(position).getLast_name());
-        holder.team.setText(listPlayers.get(position).getTeam().getFull_name());
 
         if (listPlayers.get(position).isFavourite()) {
             holder.imageButton.setVisibility(View.INVISIBLE);
         } else {
             holder.imageButton.setVisibility(View.VISIBLE);
         }
+        holder.position.setText(getPositionFormatted(holder.position.getContext(),listPlayers.get(position).getPosition()));
+        holder.teamImageView.setImageResource(listPlayers.get(position).getTeam().getTeamLogo());
     }
 
 
@@ -64,15 +66,17 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public TextView team;
         public ImageButton imageButton;
+        public TextView position;
+        public ImageView teamImageView;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             name = itemView.findViewById(R.id.textViewPlayer);
-            team = itemView.findViewById(R.id.textViewPlayerTeam);
             imageButton = itemView.findViewById(R.id.imageButtonFavPlayers);
+            position = itemView.findViewById(R.id.textViewPosition);
+            teamImageView = itemView.findViewById(R.id.teamLogoImageView);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -121,4 +125,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         return listPlayers.get(position);
     }
 
+    private String getPositionFormatted(Context context, String position) {
+        switch(position) {
+            case "C": return context.getString(R.string.positionC);
+            case "F": return context.getString(R.string.positionF);
+            case "G": return context.getString(R.string.positionG);
+            default: return "";
+        }
+    }
 }

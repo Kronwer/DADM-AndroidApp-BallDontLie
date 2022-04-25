@@ -26,11 +26,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
     private List<Team> listTeam;
     private HashMap<String, Drawable> imageTeam = new HashMap<>();
     private OnItemLongClickListener longClickListener;
+    private OnItemClickListener onItemClickListener;
     private OnFavClickListener onItemClickListenerFavs;
 
-    public TeamAdapter(OnItemLongClickListener listener, OnFavClickListener onItemClickListenerFavs){
+    public TeamAdapter(OnItemLongClickListener listener, OnItemClickListener onItemClickListener, OnFavClickListener onItemClickListenerFavs){
         listTeam = new ArrayList<>();
         longClickListener = listener;
+        this.onItemClickListener = onItemClickListener;
         this.onItemClickListenerFavs = onItemClickListenerFavs;
     }
 
@@ -53,49 +55,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
             holder.imageButton.setVisibility(View.VISIBLE);
         }
 
-        holder.imageView.setImageDrawable(imageTeam.get(listTeam.get(position).getName()));
+        holder.imageView.setImageResource(listTeam.get(position).getTeamLogo());
     }
 
     @Override
     public int getItemCount() {
         return listTeam.size();
-    }
-
-    public void loadTeamImages(Context context){
-        for (Team team: listTeam) {
-            switch (team.getName()){
-                case "Bucks": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_bucks)); break;
-                case "Bulls": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_bulls)); break;
-                case "Cavaliers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_cavaliers)); break;
-                case "Celtics": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_celtics)); break;
-                case "Clippers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_clippers)); break;
-                case "Grizzlies": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_grizzlies)); break;
-                case "Hawks": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_hawks)); break;
-                case "Heat": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_heat)); break;
-                case "Hornets": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_hornets)); break;
-                case "Jazz": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_jazz)); break;
-                case "Kings": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_kings)); break;
-                case "Knicks": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_knicks)); break;
-                case "Lakers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_lakers)); break;
-                case "Magic": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_magic)); break;
-                case "Mavericks": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_maverick)); break;
-                case "Nets": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_nets)); break;
-                case "Nuggets": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_nuggets)); break;
-                case "Pacers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_pacers)); break;
-                case "Pelicans": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_pelicans)); break;
-                case "Pistons": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_pistons)); break;
-                case "Raptors": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_raptors)); break;
-                case "Rockets": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_rockets)); break;
-                case "76ers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_sixers)); break;
-                case "Spurs": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_spurs)); break;
-                case "Suns": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_suns)); break;
-                case "Thunder": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_thunders)); break;
-                case "Timberwolves": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_timberwolves)); break;
-                case "Trail Blazers": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_trailblazers)); break;
-                case "Warriors": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_warriors)); break;
-                case "Wizards": imageTeam.put(team.getName(), context.getDrawable(R.drawable.ic_wizards)); break;
-            }
-        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -126,6 +91,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
                     onItemClickListenerFavs.onFavClick(getTeam(getAdapterPosition()));
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(getTeam(getAdapterPosition()));
+                }
+            });
         }
 
     }
@@ -134,8 +106,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
         void onItemLongClick(Team team);
     }
 
+
     public interface OnFavClickListener {
         void onFavClick(Team team);
+    }
+    public interface OnItemClickListener {
+        void onItemClick(Team team);
     }
 
     public Team getTeam(int position){

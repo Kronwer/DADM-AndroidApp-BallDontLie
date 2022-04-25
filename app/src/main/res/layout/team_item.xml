@@ -5,56 +5,61 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="4dp"
     android:outlineSpotShadowColor="@color/black"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="8dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="10dp">
+        android:paddingEnd="30dp">
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewTeamFullName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start|center_vertical"
-            android:minHeight="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/blue_nba"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textViewTeamName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Item" />
+            tools:text="Team Full Name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewTeamName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start|center_vertical"
-            android:minHeight="42dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTeamFullName"
-            tools:text="Item"
-            android:textStyle="italic"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/red_nba"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButtonFavTeams"
+            app:layout_constraintEnd_toStartOf="@id/imageButtonFavTeams"
+            app:layout_constraintTop_toTopOf="@+id/imageButtonFavTeams"
+            tools:text="Team Name" />
 
+        <ImageView
+            android:id="@+id/imageViewTeam"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_warriors"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/imageViewTeam"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="right"/>
+        <ImageButton
+            android:id="@+id/imageButtonFavTeams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="@color/white"
+            android:src="@drawable/ic_bx_heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageButton
-        android:id="@+id/imageButtonRemoveTeams"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|center_vertical"
-        android:background="@color/white"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/ic_bx_trash" />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
