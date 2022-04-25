@@ -35,8 +35,8 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        tabLayout = root.findViewById(R.id.tabLayout);
-        viewPager = root.findViewById(R.id.page);
+        tabLayout = binding.tabLayout;
+        viewPager = binding.page;
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPagerAdapter.addFragment(new PlayerSearchFragment(),"Player Search");

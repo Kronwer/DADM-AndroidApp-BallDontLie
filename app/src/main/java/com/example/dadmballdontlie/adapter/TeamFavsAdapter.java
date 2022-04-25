@@ -1,7 +1,6 @@
 package com.example.dadmballdontlie.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,38 +20,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
+public class TeamFavsAdapter extends RecyclerView.Adapter<TeamFavsAdapter.ViewHolder> {
 
     private List<Team> listTeam;
     private HashMap<String, Drawable> imageTeam = new HashMap<>();
     private OnItemLongClickListener longClickListener;
-    private OnFavClickListener onItemClickListenerFavs;
+    private OnRemoveFavClickListener onRemoveFavClickListener;
 
-    public TeamAdapter(OnItemLongClickListener listener, OnFavClickListener onItemClickListenerFavs){
+    public TeamFavsAdapter(OnItemLongClickListener listener, OnRemoveFavClickListener onRemoveFavClickListener){
         listTeam = new ArrayList<>();
-        longClickListener = listener;
-        this.onItemClickListenerFavs = onItemClickListenerFavs;
+        this.longClickListener = listener;
+        this.onRemoveFavClickListener = onRemoveFavClickListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_item_fav,parent,false);
-        TeamAdapter.ViewHolder holder = new ViewHolder(view);
+    public TeamFavsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_item,parent,false);
+        TeamFavsAdapter.ViewHolder holder = new TeamFavsAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TeamFavsAdapter.ViewHolder holder, int position) {
         holder.fullName.setText(listTeam.get(position).getFull_name());
         holder.name.setText(listTeam.get(position).getName());
-
-        if (listTeam.get(position).isFavourite()) {
-            holder.imageButton.setVisibility(View.INVISIBLE);
-        } else {
-            holder.imageButton.setVisibility(View.VISIBLE);
-        }
-
         holder.imageView.setImageDrawable(imageTeam.get(listTeam.get(position).getName()));
     }
 
@@ -110,7 +102,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
             fullName = itemView.findViewById(R.id.textViewTeamFullName);
             name = itemView.findViewById(R.id.textViewTeamName);
             imageView = itemView.findViewById(R.id.imageViewTeam);
-            imageButton = itemView.findViewById(R.id.imageButtonFavTeams);
+            imageButton = itemView.findViewById(R.id.imageButtonRemoveTeams);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -123,7 +115,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListenerFavs.onFavClick(getTeam(getAdapterPosition()));
+                    onRemoveFavClickListener.onRemoveClick(getTeam(getAdapterPosition()));
                 }
             });
         }
@@ -134,8 +126,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
         void onItemLongClick(Team team);
     }
 
-    public interface OnFavClickListener {
-        void onFavClick(Team team);
+    public interface OnRemoveFavClickListener {
+        void onRemoveClick(Team team);
     }
 
     public Team getTeam(int position){
@@ -146,4 +138,5 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder>{
         listTeam = teams;
         notifyDataSetChanged();
     }
+
 }

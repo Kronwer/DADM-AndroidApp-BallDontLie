@@ -33,6 +33,23 @@ public class Player {
     @ColumnInfo(name = "team")
     private Team team;
 
+    @ColumnInfo(name = "favourite")
+    private boolean favourite = false;
+
+    public Player(int id, String first_name, String last_name, String position, int height_feet,
+                  int height_inches, int weight_pounds, Team team, boolean favourite) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.position = position;
+        this.height_feet = height_feet;
+        this.height_inches = height_inches;
+        this.weight_pounds = weight_pounds;
+        this.team = team;
+        this.favourite = favourite;
+    }
+
+    @Ignore
     public Player(int id, String first_name, String last_name, String position, int height_feet,
                   int height_inches, int weight_pounds, Team team) {
         this.id = id;
@@ -43,6 +60,7 @@ public class Player {
         this.height_inches = height_inches;
         this.weight_pounds = weight_pounds;
         this.team = team;
+        favourite = false;
     }
 
     public int getId() {
@@ -107,5 +125,13 @@ public class Player {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 }

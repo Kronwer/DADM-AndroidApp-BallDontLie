@@ -40,12 +40,12 @@
         android:textStyle="italic"/>
 
     <ImageButton
-        android:id="@+id/imageButtonRemovePlayers"
+        android:id="@+id/imageButtonFavPlayers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
         android:background="@color/white"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_bx_trash" />
+        android:src="@drawable/ic_bx_heart" />
 
 </androidx.cardview.widget.CardView>

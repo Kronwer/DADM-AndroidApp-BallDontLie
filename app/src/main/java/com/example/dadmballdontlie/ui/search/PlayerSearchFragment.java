@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class PlayerSearchFragment extends Fragment {
     private FragmentPlayerSearchBinding binding;
     private SharedViewModel sharedViewModel;
     private PlayerAdapter adapter;
+    private boolean addVisible;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,6 +61,7 @@ public class PlayerSearchFragment extends Fragment {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
 
         recyclerView.setLayoutManager(manager);
+
         //Add a separation line between items
         //recyclerView.addItemDecoration(itemDecoration);
 
@@ -92,8 +95,15 @@ public class PlayerSearchFragment extends Fragment {
                 sharedViewModel.getStatFromCurrentSeason(player);
                 Navigation.findNavController(root).navigate(R.id.action_navigation_search_to_playerFragment, bundle);
             }
+        }, new PlayerAdapter.OnFavClickListener() {
+            @Override
+            public void onFavClick(Player player) {
+                sharedViewModel.savePlayerToFavourites(player);
+            }
         });
-        
+
+        //adapter.checkVisibility(sharedViewModel.getAllFavsPlayers());
+
         recyclerView.setAdapter(adapter);
 
         // Expand the ViewSearch
@@ -112,6 +122,7 @@ public class PlayerSearchFragment extends Fragment {
                 return false;
             }
         });
+
         binding.inputSearch.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -121,6 +132,15 @@ public class PlayerSearchFragment extends Fragment {
         });
 
         sharedViewModel.mediatorListPlayer.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
+            @Override
+            public void onChanged(List<Player> players) {
+                if (players != null) {
+                    adapter.updateList(players);
+                }
+            }
+        });
+
+        sharedViewModel.listPlayerLocal.observe(getViewLifecycleOwner(), new Observer<List<Player>>() {
             @Override
             public void onChanged(List<Player> players) {
                 if (players != null) {

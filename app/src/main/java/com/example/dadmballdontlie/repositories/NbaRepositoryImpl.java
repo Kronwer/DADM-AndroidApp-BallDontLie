@@ -25,6 +25,16 @@ public class NbaRepositoryImpl implements NbaRepository {
     }
 
     @Override
+    public void updatePlayer(Player player) {
+        dataSource.updatePlayer(player);
+    }
+
+    @Override
+    public void updateTeam(Team team) {
+        dataSource.updateTeam(team);
+    }
+
+    @Override
     public void addTeam(Team team) {
         dataSource.addTeam(team);
     }
@@ -47,6 +57,16 @@ public class NbaRepositoryImpl implements NbaRepository {
     @Override
     public LiveData<List<Team>> getAllTeams() {
         return dataSource.getAllTeams();
+    }
+
+    @Override
+    public LiveData<List<Player>> getAllFavsPlayers() {
+        return dataSource.getAllFavsPlayers();
+    }
+
+    @Override
+    public LiveData<List<Team>> getAllFavsTeams() {
+        return dataSource.getAllFavsTeams();
     }
 
     @Override

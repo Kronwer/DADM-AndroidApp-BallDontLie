@@ -2,6 +2,7 @@ package com.example.dadmballdontlie.data.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "team")
@@ -29,6 +30,22 @@ public class Team {
     @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "favourite")
+    private boolean favourite = false;
+
+    public Team(int id, String abbreviation, String city,String conference,
+                String division, String full_name, String name, boolean favourite) {
+        this.id = id;
+        this.abbreviation = abbreviation;
+        this.city = city;
+        this.conference = conference;
+        this.division = division;
+        this.full_name = full_name;
+        this.name = name;
+        this.favourite = favourite;
+    }
+
+    @Ignore
     public Team(int id, String abbreviation, String city,String conference,
                 String division, String full_name, String name) {
         this.id = id;
@@ -38,6 +55,7 @@ public class Team {
         this.division = division;
         this.full_name = full_name;
         this.name = name;
+        favourite = false;
     }
 
     public int getId() {
@@ -95,4 +113,13 @@ public class Team {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
+    }
+
 }
